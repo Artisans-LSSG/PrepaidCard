@@ -115,4 +115,39 @@ class CardController extends Controller
 
         return response()->json($user::all());
     }
+
+    
+    public function cardNumberGenerate()
+  {
+    $n = rand(7900000000000009,7999999999999990);
+    $m = $n;
+    $ans = 0;
+    $digits = [];
+    while ($m) {
+      array_push($digits, ($m % 10));
+      $m = intval($m / 10);
+    }
+    for ($i = 0; $i < 16; $i++) {
+      if ($i % 2 == 0) {
+        $ans += $digits[$i];
+      } else {
+        if ($digits[$i] == 5) {
+          $ans += 1;
+        } else if ($digits[$i] == 6) {
+          $ans += 1;
+        } else if ($digits[$i] == 7) {
+          $ans += 1;
+        } else if ($digits[$i] == 8) {
+          $ans += 1;
+        } else if ($digits[$i] == 9) {
+          $ans += 1;
+        } else {
+          $ans += 2 * $digits[$i];
+        }
+      }
+    }
+    $result= $n - $ans % 10;
+    return $result;
+  }
+
 }
