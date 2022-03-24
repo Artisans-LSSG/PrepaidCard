@@ -116,6 +116,7 @@ class CardController extends Controller
         return response()->json($user::all());
     }
 
+// card number generator using the algorith 
 
     public function cardNumberGenerate()
   {
@@ -150,6 +151,7 @@ class CardController extends Controller
     return $result;
   }
 
+  //check the card number is valid or not before storing the data into database
   public function checkCardNumber($n)
   {
     $m = $n;
@@ -184,7 +186,8 @@ class CardController extends Controller
       return false;
    
   }
-  
+
+  // random 3 digit  cvv  genrator 
   public function cvvGenerator(){
     $cvv = rand(100,999);
     return $cvv;
