@@ -184,6 +184,10 @@ class CardController extends Controller
       return false;
    
   }
- 
+  
+  public function cvvGenerator(){
+    $cvv = rand(100,999);
+    return $cvv;
+  }
 
 }
