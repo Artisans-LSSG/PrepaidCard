@@ -13,18 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-// Route::get('/', function () {
-//     return view('signup');
-// });
-Route::get('/practise', function () {
-    return view('practise');
-});
-Route::get('home', function () {
-    return view('home');
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::get('/register', [RegistrationController::class, 'index']);
-Route::post('/register', [RegistrationController::class, 'register']);
+  Route::post('/parent_u_s',[\App\Http\Controllers\ParentUserController::class,'store']);
+  Route::post('/child_u_s',[\App\Http\Controllers\ChildUserController::class,'store']);
+Route::post('/card',[\App\Http\Controllers\CardController::class,'store']);
