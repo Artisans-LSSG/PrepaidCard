@@ -15,7 +15,8 @@ class CreateCardsTable extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('child_id')->nullable()->constrained('child_u_s');
+            $table->integer('child_id');
+            $table->foreign('child_id')->references('id')->on('child_users');
             $table->integer('card_number')->unique();
             $table->date('exp_date');
             $table->integer('cvv');
