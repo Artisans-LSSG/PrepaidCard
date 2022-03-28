@@ -3,7 +3,7 @@
 Secure is a Prepaid card (LSSG) website which is still Under Development By Artisan Team from mPokket
 
 ## About 
-Unlike a debit card, a prepaid card is not linked to a bank account. Generally, when you use a prepaid card, you are spending money that you have already loaded onto the card. “This is sometimes called “depositing money into the card”.
+
 Prepaid credit card, a card that debits money from an associated account that ordinarily uses a signature rather than a PIN for verification. ... Stored-value card, a card that has a monetary value that is recorded as data on the card itself, and thus can be used without online access to an associated account.
 ## Getting Started
 
