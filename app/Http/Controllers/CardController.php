@@ -116,7 +116,7 @@ class CardController extends Controller
         return response()->json($user::all());
     }
 
-// card number generator using the algorith 
+// card number generator using the algorith (latha)
 
     public function cardNumberGenerate()
   {
@@ -151,46 +151,8 @@ class CardController extends Controller
     return $result;
   }
 
-  //check the card number is valid or not before storing the data into database
-  public function checkCardNumber($n)
-  {
-    $m = $n;
-    $ans = 0;
-    $digits = [];
-    while ($m) {
-      array_push($digits, ($m % 10));
-      $m = intval($m / 10);
-    }
-    for ($i = 0; $i < 16; $i++) {
-      if ($i % 2 == 0) {
-        $ans += $digits[$i];
-      } else {
-        if ($digits[$i] == 5) {
-          $ans += 1;
-        } else if ($digits[$i] == 6) {
-          $ans += 1;
-        } else if ($digits[$i] == 7) {
-          $ans += 1;
-        } else if ($digits[$i] == 8) {
-          $ans += 1;
-        } else if ($digits[$i] == 9) {
-          $ans += 1;
-        } else {
-          $ans += 2 * $digits[$i];
-        }
-      }
-    }
-    if($ans%10==0){
-      return true;
-    }
-      return false;
-   
-  }
+ 
 
-  // random 3 digit  cvv  genrator 
-  public function cvvGenerator(){
-    $cvv = rand(100,999);
-    return $cvv;
-  }
+ 
 
 }
