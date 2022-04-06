@@ -113,7 +113,7 @@ realcard
                     </g>
                     <rect x="58.1" y="378.6" class="st11" width="375.5" height="13.5" />
                     <rect x="58.1" y="405.6" class="st11" width="421.7" height="13.5" />
-                    <text transform="matrix(1 0 0 1 59.5073 228.6099)" id="svgnameback" class="st12 st13">John Doe</text>
+                    <text transform="matrix(1 0 0 1 59.5073 228.6099)" id="svgnameback" class="st12 st13">John  yo Doe</text>
                 </g>
             </svg>
         </div>
@@ -154,6 +154,8 @@ realcard
     scard.innerHTML=cvv();
     const rname=document.getElementById('svgname');
     rname.innerHTML=name();
+    const bname=document.getElementById('svgnameback');
+    bname.innerHTML=rname.innerHTML;
 
 
 
@@ -192,12 +194,17 @@ var m =  n;
         }
       }
     }
-    result= n - ans % 10;
+     const result= n - ans % 10;
+
     // console.log (result);
-    return result;
+    // return result;
+    let x = result.toString().replace(/\d{4}(?=.)/g, '$& ');
+       return x;
+
 
 
    }
+
    function cvv(){
    let cv = Math.floor(Math.random() * (999- 100)) +100 ;    
       console.log(cv);
@@ -211,6 +218,7 @@ var m =  n;
        let rn = Math.floor(Math.random()*(4-0))+0;
        console.log(rname[rn]);
        return rname[rn];
+       
    }
 
    cardNumberGenerate();
