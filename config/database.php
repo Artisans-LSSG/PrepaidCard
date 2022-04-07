@@ -91,25 +91,6 @@ return [
             'prefix_indexes' => true,
         ],
 
-        'cockroach' => [
-            'driver' => 'cockroach',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '26257'),
-            'database' => env('DB_DATABASE', 'secure'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', 'guru4321'),
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'secure',
-            'sslmode' => 'prefer',
-            
-            // Only set these keys if you want to run en secure mode
-            // otherwise you can them out of the configuration array
-            'sslcert' => env('DB_SSLCERT', 'client.crt'),
-            'sslkey' => env('DB_SSLKEY', 'client.key'),
-            'sslrootcert' => env('DB_SSLROOTCERT', 'ca.crt'),
-        ],
-
     ],
 
     /*

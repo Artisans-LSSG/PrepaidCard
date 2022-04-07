@@ -14,7 +14,13 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'email'=>$this->faker->unique()->email,
+            'phone_number'=>$this->faker->phoneNumber,
+            'password'=>$this->faker->unique()->password,
+            'address'=>$this->faker->address,
+            'dob'=>$this->faker->dateTime,
+            'joined_date'=>$this->faker->dateTime,
         ];
     }
 }

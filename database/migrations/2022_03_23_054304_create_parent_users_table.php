@@ -17,7 +17,7 @@ class CreateParentUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->integer('phone_number')->unique();
+            $table->string('phone_number')->unique();
             $table->string('password')->unique();
             $table->string('address');
             $table->string('pancard')->unique();

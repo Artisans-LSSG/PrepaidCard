@@ -18,7 +18,6 @@ class CreateTransactionsTable extends Migration
             $table->integer('card_number');
             $table->foreign('card_number')->references('card_number')->on('cards');
             $table->string('vendor_name');
-            $table->integer('limit');
             $table->integer('transaction_amount');
             $table->integer('limit_balance');
             $table->timestamps();
