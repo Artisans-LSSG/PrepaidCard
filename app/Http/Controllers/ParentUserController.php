@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreParentURequest;
 use App\Http\Requests\UpdateParentURequest;
+use App\Models\ChildUser;
 use App\Models\ParentUser;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\String_;
@@ -79,6 +81,11 @@ class ParentUserController extends Controller
         $user = ParentUser::findOrFail($parentUser);
         return response()->json($user);
     }
+    public function showchild($childU)
+    {
+        $user = ChildUser::findOrFail($childU);
+        return response()->json($user);
+    }
 
     /**
      * Display the specified resource.
@@ -149,19 +156,41 @@ class ParentUserController extends Controller
 
         return response()->json($user::all());
     }
-    public function showlimit($pan){
+    public function showtransaction($transaction)
+    {
+        $user = Transaction::findOrFail($transaction);
+        return response()->json($user);
 
-        $limit = DB::table('cards')->select('limit')
-            ->where('parent_id','=',$pan)->first();
-
-        return response()->json($limit);
     }
-    public function showbalance($user){
 
-        $balance = DB::table('transactions')->select('limit_balance')
-            ->where('card_number','=',$user)->first();
+    public function storechild(\Illuminate\Http\Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'dob' => 'date',
+            'email' => 'required|string|unique:users|email',
+            'phone_number' => 'required|integer|digits_between:12,12',
+            'gender'=>'required|String',
+            'monthly_limit'=>'required|integer',
+            'parent_id'=>ParentUser::all()->random()->pluck('id')
 
-        return response()->json($balance);
+        ]);
+
+        $newUser = new ChildUser([
+            'first_name' => $request->get('first_name'),
+            'last_name' => $request->get('last_name'),
+            'dob'=>$request->get('dob'),
+            'email'=>$request->get('email'),
+            'phone_number' => $request->get('phone_number'),
+            'gender'=>$request->get('gender'),
+            'monthly_limit'=>$request->get('monthly_limit'),
+            'parent_id'=>$request->get('parent_id')
+        ]);
+
+        $newUser->save();
+
+        return response()->json($newUser);
     }
 
 }

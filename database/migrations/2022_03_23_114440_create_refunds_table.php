@@ -15,9 +15,9 @@ class CreateRefundsTable extends Migration
     {
         Schema::create('refunds', function (Blueprint $table) {
             $table->id();
-            $table->integer('transaction_id');
+            $table->string('transaction_id');
             $table->integer('refund_amount');
-            $table->date('refund_date');
+            $table->timestamp('refund_date');
             $table->timestamps();
         });
     }

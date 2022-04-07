@@ -20,9 +20,9 @@ class CreateChildUsersTable extends Migration
             $table->string('last_name');
             $table->date('dob');
             $table->string('email');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->string('gender');
-            $table->integer('limit');
+            $table->integer('monthly_limit');
             $table->timestamps();
         });
     }

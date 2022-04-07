@@ -46,7 +46,7 @@ class ChildUserController extends Controller
             'email' => 'required|string|unique:users|email',
             'phone_number' => 'required|integer|digits_between:12,12',
             'gender'=>'required|String',
-            'limit'=>'required|integer',
+            'monthly_limit'=>'required|integer',
             'parent_id'=>ParentUser::all()->random()->pluck('id')
 
         ]);
@@ -58,7 +58,7 @@ class ChildUserController extends Controller
             'email'=>$request->get('email'),
             'phone_number' => $request->get('phone_number'),
             'gender'=>$request->get('gender'),
-            'limit'=>$request->get('limit'),
+            'limit'=>$request->get('monthly_limit'),
             'parent_id'=>$request->get('parent_id')
         ]);
 
@@ -78,6 +78,15 @@ class ChildUserController extends Controller
         $user = ChildUser::findOrFail($childU);
         return response()->json($user);
     }
+   public function showTransaction(transaction $transaction)
+    {
+        $comments = Transaction::all();
+        return response()->json($comments);
+    }
+
+
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -107,7 +116,7 @@ class ChildUserController extends Controller
             'email' => 'required|string|unique:users|email',
             'phone_number' => 'required|integer|digits_between:12,12',
             'gender'=>'required|String',
-            'limit'=>'required|integer',
+            'monthly_limit'=>'required|integer',
             'parent_id'=>'required|integer'
         ]);
 
@@ -118,7 +127,7 @@ class ChildUserController extends Controller
         $user->email = $request->get('email');
         $user->phone_number= $request->get('phone_number');
         $user->gender = $request->get('gender');
-        $user->limit = $request->get('limit');
+        $user->limit = $request->get('monthly_limit');
         $user->parent_id=$request->get('parent_id');
         $user->save();
 
@@ -139,7 +148,7 @@ class ChildUserController extends Controller
     }
     public function showlimit($pan){
 
-        $limit = DB::table('cards')->select('limit')
+        $limit = DB::table('cards')->select('monthly_limit')
             ->where('child_id','=',$pan)->first();
 
         return response()->json($limit);
