@@ -15,6 +15,6 @@ class ChildUser extends Model
         'email',
         'phone_number',
         'gender',
-        'limit'
+        'monthly_limit'
     ];
 }

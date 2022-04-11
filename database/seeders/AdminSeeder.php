@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\admin;
 use Illuminate\Database\Seeder;
-
+use Faker\Factory;
 class AdminSeeder extends Seeder
 {
     /**
@@ -13,6 +14,15 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::factory(10)->create();
+        $faker = Factory::create();
+        $admin = new admin();
+        $admin->name = $faker->firstName;
+        $admin->email = $faker->email;
+        $admin->phone_number = $faker->phoneNumber;
+        $admin->password = $faker->password;
+        $admin->address = $faker-> address;
+        $admin->job= $faker->date();
+        $admin->joined_date=$faker->date;
+        $admin->save();
     }
 }
