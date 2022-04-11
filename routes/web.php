@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+  Route::post('/parent_u_s',[\App\Http\Controllers\ParentUserController::class,'store']);
+  Route::post('/child_u_s',[\App\Http\Controllers\ChildUserController::class,'store']);
+Route::post('/card',[\App\Http\Controllers\CardController::class,'store']);

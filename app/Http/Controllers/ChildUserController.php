@@ -58,7 +58,7 @@ class ChildUserController extends Controller
             'email'=>$request->get('email'),
             'phone_number' => $request->get('phone_number'),
             'gender'=>$request->get('gender'),
-            'limit'=>$request->get('monthly_limit'),
+            'monthly_limit'=>$request->get('monthly_limit'),
             'parent_id'=>$request->get('parent_id')
         ]);
 
@@ -127,7 +127,7 @@ class ChildUserController extends Controller
         $user->email = $request->get('email');
         $user->phone_number= $request->get('phone_number');
         $user->gender = $request->get('gender');
-        $user->limit = $request->get('monthly_limit');
+        $user->monthly_limit = $request->get('monthly_limit');
         $user->parent_id=$request->get('parent_id');
         $user->save();
 
@@ -145,20 +145,6 @@ class ChildUserController extends Controller
         $user->delete();
 
         return response()->json($user::all());
-    }
-    public function showlimit($pan){
-
-        $limit = DB::table('cards')->select('monthly_limit')
-            ->where('child_id','=',$pan)->first();
-
-        return response()->json($limit);
-    }
-    public function showbalance($user){
-
-        $balance = DB::table('transactions')->select('limit_balance')
-            ->where('card_number','=',$user)->first();
-
-        return response()->json($balance);
     }
 
 }

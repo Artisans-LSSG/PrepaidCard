@@ -24,7 +24,7 @@ class CardSeeder extends Seeder
         $card->child_id = $child->id;
         $card->card_number=$faker->creditCardNumber;
         $card->exp_date=$faker->creditCardExpirationDate;
-        $card->cvv=$faker->randomNumber(3);
+        $card->cvv=$faker->numberBetween(111,999);
         $card->save();
     }
 }

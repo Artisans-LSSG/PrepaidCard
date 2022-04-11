@@ -20,6 +20,8 @@ class CreateTransactionsTable extends Migration
             $table->string('vendor_name');
             $table->integer('transaction_amount');
             $table->integer('limit_balance');
+            $table->timestamp('transaction_date');
+            $table->boolean('transaction_status');
             $table->timestamps();
         });
     }
