@@ -37,7 +37,20 @@ class RefundController extends Controller
      */
     public function store(StorerefundsRequest $request)
     {
-        //
+        $request->validate([
+            'transaction_is'=>'required|string',
+            'refund_amount'=>'required|interger',
+            'refund_status'=>'required|boolean',
+            'refund_date'=>'required|date|timestamp',
+        ]);
+        $newRefund = new refunds([
+           'transaction_id'=>$request->get(transaction_id),
+           'refund_amount'=>$request->get('refund_amount'),
+           'refund_status'=>$request->get('refund_status'),
+            'refund_date'=>$request->get('refund_date'),
+        ]);
+        $newRefund->save();
+        return response()->json($newRefund);
     }
 
     /**
@@ -49,7 +62,8 @@ class RefundController extends Controller
     public function show(refunds $refund_id)
     {
         $refunds =refunds::findOrFail($refund_id);
-        return response()->json($refunds);    }
+        return response()->json($refunds);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -71,7 +85,23 @@ class RefundController extends Controller
      */
     public function update(UpdaterefundsRequest $request, refunds $refunds)
     {
-        //
+        $refunds = refunds::findOrFail($refunds);
+
+        $request->validate([
+            'transaction_is'=>'required|string',
+            'refund_amount'=>'required|interger',
+            'refund_status'=>'required|boolean',
+            'refund_date'=>'required|date|timestamp',
+        ]);
+
+        $refunds->transaction_id=$request->get('transaction_id');
+        $refunds->refund_amount=$request->get('refund_amount');
+        $refunds->refund_status=$request->get('refund_status');
+        $refunds->refund_date=$request->get('refund_date');
+        $refunds->save();
+
+        return response()->json($refunds);
+
     }
 
     /**
