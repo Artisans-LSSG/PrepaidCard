@@ -23,5 +23,7 @@ class VendorSeeder extends Seeder
         $vendor->password = $faker->password;
         $vendor->address = $faker-> address;
         $vendor->save();
+     // Vendor::factory(4)->create();
+
     }
 }

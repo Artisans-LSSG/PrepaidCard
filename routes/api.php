@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,23 +14,15 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-
-], function () {
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('register', [AuthController::class, 'register']);
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::get('user-profile', [AuthController::class, 'userProfile']);
-    Route::post('sendPasswordResetLink', 'App\Http\Controllers\PasswordResetRequestController@sendEmail');
-    Route::post('resetPassword', 'App\Http\Controllers\ChangePasswordController@passwordResetProcess');
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
 
-Route::post('sendEmail', 'App\Http\Controllers\MailController@sendEmail');
+Route::resource('/parents',\App\Http\Controllers\ParentUserController::class);
+Route::resource('/childs',\App\Http\Controllers\ChildUserController::class);
+Route::resource('/cards',\App\Http\Controllers\CardController::class);
+
+Route::get('/parent/transaction/{id}',[\App\Http\Controllers\ParentUserController::class,'showtransaction']);
+Route::get('/parent/child/{id}',[\App\Http\Controllers\ParentUserController::class,'showchild']);
+Route::post('/parent/child',[\App\Http\Controllers\ParentUserController::class,'storechild']);
+
