@@ -27,6 +27,8 @@ class TransactionSeeder extends Seeder
         $transaction->vendor_name = $vendor->name;
         $transaction->transaction_amount = $faker->numberBetween(1000,5000);
         $transaction->limit_balance = $child->monthly_limit;
+        $transaction->transaction_date = $faker->date();
+        $transaction->transaction_status=rand(0,1);
         $transaction->save();
     }
 }
