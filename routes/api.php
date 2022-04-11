@@ -23,6 +23,7 @@ Route::resource('/childs',\App\Http\Controllers\ChildUserController::class);
 Route::resource('/cards',\App\Http\Controllers\CardController::class);
 Route::resource('/transaction',\App\Http\Controllers\TransactionController::class);
 Route::resource('/vendor',\App\Http\Controllers\VendorController::class);
+Route::resource('/refunds',\App\Http\Controllers\RefundController::class);
 
 
 Route::get('/parents/transaction/{id}',[\App\Http\Controllers\ParentUserController::class,'showtransaction']);
