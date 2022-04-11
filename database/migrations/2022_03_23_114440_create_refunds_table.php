@@ -19,7 +19,6 @@ class CreateRefundsTable extends Migration
             $table->Integer('refund_amount');
             $table->boolean('refund_status');
             $table->timestamp('refund_date');
-            $table->timestamps();
         });
     }
 
