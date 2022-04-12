@@ -66,7 +66,8 @@ class VendorController extends Controller
      */
     public function show(vendor $vendor)
     {
-        //
+        $vendors = Vendor::findOrFail($vendor);
+        return response()->json($vendors);
     }
 
     /**
