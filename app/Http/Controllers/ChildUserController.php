@@ -47,10 +47,8 @@ class ChildUserController extends Controller
             'phone_number' => 'required|integer|digits_between:12,12',
             'gender'=>'required|String',
             'monthly_limit'=>'required|integer',
-            'parent_id'=>ParentUser::all()->random()->pluck('id')
 
         ]);
-
         $newUser = new ChildUser([
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
@@ -59,9 +57,8 @@ class ChildUserController extends Controller
             'phone_number' => $request->get('phone_number'),
             'gender'=>$request->get('gender'),
             'monthly_limit'=>$request->get('monthly_limit'),
-            'parent_id'=>$request->get('parent_id')
+            'parent_id'=>ParentUser::all()->pluck('id')->random()
         ]);
-
         $newUser->save();
 
         return response()->json($newUser);
@@ -128,7 +125,7 @@ class ChildUserController extends Controller
         $user->phone_number= $request->get('phone_number');
         $user->gender = $request->get('gender');
         $user->monthly_limit = $request->get('monthly_limit');
-        $user->parent_id=$request->get('parent_id');
+        //$user->parent_id=$request->get('parent_id');
         $user->save();
 
         return response()->json($user);

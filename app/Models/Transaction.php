@@ -12,6 +12,8 @@ class Transaction extends Model
         'vendor_name',
         'transaction_amount',
         'limit_balance',
+        'transaction_status',
+        'transaction_date',
 
     ];
 }
