@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Models\Card;
 use App\Models\Transaction;
-use http\Client\Request;
+use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
@@ -71,6 +72,15 @@ class TransactionController extends Controller
        return response()->json($user);
 
     }
+    public function showcard(Request $request,$card)
+    {
+        //print_r($card);exit;
+        //var_dump($card);exit;
+        $user = Card::where('card_number', '=', $card)->firstOrFail();
+        //$user = Card::findOrFail($card);
+        return response()->json($user);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
