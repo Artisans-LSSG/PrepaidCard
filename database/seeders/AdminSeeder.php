@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
         $admin->phone_number = $faker->phoneNumber;
         $admin->password = $faker->password;
         $admin->address = $faker-> address;
-        $admin->job= $faker->date();
+        $admin->dob= $faker->date();
         $admin->joined_date=$faker->date;
         $admin->save();
     }
