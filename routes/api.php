@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\admin;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,6 +26,16 @@ Route::resource('/vendor',\App\Http\Controllers\VendorController::class);
 Route::resource('/refunds',\App\Http\Controllers\RefundController::class);
 
 
+
+Route::get('/admin', [\App\Http\Controllers\AdminController::class,'show']);
+Route::get('/admin/{id}', [\App\Http\Controllers\AdminController::class,'showadminid']);
 Route::get('/parents/transaction/{id}',[\App\Http\Controllers\ParentUserController::class,'showtransaction']);
 Route::get('/parents/child/{id}',[\App\Http\Controllers\ParentUserController::class,'showchild']);
 Route::post('/parent/child',[\App\Http\Controllers\ParentUserController::class,'storechild']);
+Route::get('transaction/card/{card_number}',[\App\Http\Controllers\TransactionController::class,'showcard']);
+Route::get('/admin/transaction/{id}',[\App\Http\Controllers\AdminController::class,'showtransaction']);
+Route::get('/admin/vendor/{id}',[\App\Http\Controllers\AdminController::class,'showvendor']);
+Route::get('/admin/refund/{id}',[\App\Http\Controllers\AdminController::class,'showrefund']);
+Route::get('/admin/card/{card_number}',[\App\Http\Controllers\AdminController::class,'showcard']);
+Route::get('/admin/child/{id}',[\App\Http\Controllers\AdminController::class,'showchild']);
+Route::get('/admin/parent/{id}',[\App\Http\Controllers\AdminController::class,'showparent']);
