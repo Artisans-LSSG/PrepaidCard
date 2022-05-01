@@ -74,7 +74,7 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            'search_path' => 'public',
+            'schema' => 'public',
             'sslmode' => 'prefer',
         ],
 
@@ -89,8 +89,25 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            // 'encrypt' => env('DB_ENCRYPT', 'yes'),
-            // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'true'),
+        ],
+
+        'cockroach' => [
+            'driver' => 'cockroach',
+            'host' => env('DB_HOST', 'localhost'),
+            'port' => env('DB_PORT', '26257'),
+            'database' => env('DB_DATABASE', 'secure'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', 'guru4321'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'secure',
+            'sslmode' => 'prefer',
+            
+            // Only set these keys if you want to run en secure mode
+            // otherwise you can them out of the configuration array
+            'sslcert' => env('DB_SSLCERT', 'client.crt'),
+            'sslkey' => env('DB_SSLKEY', 'client.key'),
+            'sslrootcert' => env('DB_SSLROOTCERT', 'ca.crt'),
         ],
 
     ],
@@ -131,8 +148,7 @@ return [
         'default' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
-            'username' => env('REDIS_USERNAME'),
-            'password' => env('REDIS_PASSWORD'),
+            'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_DB', '0'),
         ],
@@ -140,8 +156,7 @@ return [
         'cache' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
-            'username' => env('REDIS_USERNAME'),
-            'password' => env('REDIS_PASSWORD'),
+            'password' => env('REDIS_PASSWORD', null),
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_CACHE_DB', '1'),
         ],
