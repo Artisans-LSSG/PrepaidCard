@@ -1,72 +1,149 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
-use Validator;
-use Illuminate\Http\Request;
-use Exception;
-use Log;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-
-public function requestOtp(Request $request)
-{
-    // echo 0;exit;
-//return "hello";
-
-$tomail = $request->email;
-$otp = rand(1000, 9999);
-Log::info("otp = " . $otp);
-$user = User::where('email', $request->email)->update(['otp' => $otp]);
-$affected = DB::table('users')
-->where('email', $request->email)
-->update(['otp' => $otp]);
-$affected=true;
-
-    if ($affected) {
-        // send otp in the email
-        $mail_details = 'Testing Application OTP';
-        $temp = 'Your OTP is : ' . $otp;
-        $mail_details = $mail_details.'---'.$temp;
-
-Mail::raw($mail_details, function($message) use ($tomail)
-{
-
-            $message->to($tomail)
-                    ->subject('Verify Your OTP');
-        });
-
-        return response(["status" => 200, "message" => "OTP sent successfully","otp"=>$otp]);
-    } else {
-        return response(["status" => 401, 'message' => 'Invalid']);
-    }
-}
-
-public function verify_otp(Request $request){
-
-    $email=$request->email;
-    $otp=$request->otp;
-    // return $otp;
-    $time = \Carbon\Carbon::now();
-    return $
-    $verify=DB::table('users')
-        ->where('email',$email )
-        ->where('otp',$otp)
-        ->update(['email_status' => 1 ,'email_verified_at' => \Carbon\Carbon::now()]);
-
-    if($verify)
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        return response(["status" => 200, "message" => "OTP verified successfully"]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
-    else{
-        return response(["status" => 401, "message" => "OTP invalid "]);
+
+    /**
+     * Get a JWT via given credentials.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|string|min:6',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        if (!$token = auth()->attempt($validator->validated())) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        $user=Auth::user()->role_as;
+
+        if($user == 'admin')
+        {
+            return response()->json(['message' => 'Now you are in dashboard of '.$user]);
+        }
+
+        if($user == 'vendor')
+        {
+            return response()->json(['message' => 'Now you are in dashboard of '.$user]);
+        }
+
+        if($user == 'child')
+        {
+            return response()->json(['message' => 'Now you are in dashboard of '.$user]);
+        }
+
+        if($user == 'parent')
+        {
+            return response()->json(['message' => 'Now you are in dashboard of '.$user]);
+        }
+
+        return $this->createNewToken($token);
     }
-}
+
+    /**
+     * Register a User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|between:2,100',
+            'email' => 'required|string|email|max:100|unique:users',
+            'password' => 'required|string|confirmed|min:6',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(array(
+                "status" => false,
+                "errors" => $validator->errors()
+            ), 400);
+        }
+
+        $user = User::create(array_merge(
+            $validator->validated(),
+            ['password' => bcrypt($request->password)]
+        ));
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User successfully registered',
+            'user' => $user
+        ], 201);
+    }
+
+
+    /**
+     * Log the user out (Invalidate the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        auth()->logout();
+
+        return response()->json(['message' => 'User successfully signed out']);
+    }
+
+    /**
+     * Refresh a token.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refresh()
+    {
+        return $this->createNewToken(auth()->refresh());
+    }
+
+    /**
+     * Get the authenticated User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function userProfile()
+    {
+        return response()->json(auth()->user());
+    }
+
+    /**
+     * Get the token array structure.
+     *
+     * @param  string $token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function createNewToken($token)
+    {
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'user' => auth()->user()
+        ]);
+    }
 }
