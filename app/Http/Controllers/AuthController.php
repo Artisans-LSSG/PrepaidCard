@@ -42,27 +42,31 @@ class AuthController extends Controller
 
         $user=Auth::user()->role_as;
 
-        if($user == 'admin')
+    if($user == 'admin')
         {
-            return response()->json(['message' => 'Now you are in dashboard of '.$user]);
+
+            return $this->createNewToken($token);
         }
 
         if($user == 'vendor')
         {
-            return response()->json(['message' => 'Now you are in dashboard of '.$user]);
+
+            return $this->createNewToken($token);
         }
 
         if($user == 'child')
         {
-            return response()->json(['message' => 'Now you are in dashboard of '.$user]);
+       
+            return $this->createNewToken($token);
         }
 
         if($user == 'parent')
         {
-            return response()->json(['message' => 'Now you are in dashboard of '.$user]);
+           
+            return $this->createNewToken($token);
         }
 
-        return $this->createNewToken($token);
+        
     }
 
     /**
