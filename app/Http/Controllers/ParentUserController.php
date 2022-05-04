@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreParentURequest;
 use App\Http\Requests\UpdateParentURequest;
+use App\Models\Card;
 use App\Models\ChildUser;
 use App\Models\ParentUser;
 use App\Models\Transaction;
@@ -16,7 +17,7 @@ class ParentUserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -38,7 +39,7 @@ class ParentUserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreParentURequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -46,10 +47,9 @@ class ParentUserController extends Controller
             'name' => 'required|string',
             'phone_number' => 'required|integer|digits_between:12,12',
             'address' => 'required|string',
-            'aadhar' => 'required|integer|digits_between:12,12',
-            'pancard' => 'required|regex:/^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/',
+            'pan_card' => 'required|regex:/^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/',
             'email' => 'required|string|unique:users|email',
-            'password' => 'required|string|max:6',
+            'password' => 'required|string|max:25',
             'gender'=>'required|String',
 
         ]);
@@ -58,11 +58,11 @@ class ParentUserController extends Controller
             'name' => $request->get('name'),
             'phone_number' => $request->get('phone_number'),
             'address'=>$request->get('address'),
-            'aadhar'=>$request->get('aadhar'),
-            'pancard'=>$request->get('pancard'),
+            'pan_card'=>$request->get('pan_card'),
             'email'=>$request->get('email'),
             'password'=>$request->get('password'),
             'gender'=>$request->get('gender'),
+            'is_approved'=>'not-approved',
         ]);
 
         $newUser->save();
@@ -74,23 +74,25 @@ class ParentUserController extends Controller
      * Display the specified resource.
      *
      * @param $parentUser
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($parentUser)
     {
         $user = ParentUser::findOrFail($parentUser);
         return response()->json($user);
     }
-    public function showchild($childU)
+    public function showchild($name)
     {
-        $user = ChildUser::findOrFail($childU);
+        $ChildUsers = ChildUser::all()->where('first_name','=',$name)->first();
+        $ChildUser = $ChildUsers->id;
+        $user = ChildUser::findOrFail($ChildUser);
         return response()->json($user);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ParentUser  $parentU
+     * @param  \App\Models\ParentUser  $parentUser
      * @return \Illuminate\Http\Response
      */
 
@@ -111,21 +113,20 @@ class ParentUserController extends Controller
      *
      * @param  \App\Http\Requests\UpdateParentURequest  $request
      * @param  \App\Models\ParentUser  $parentUser
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateParentURequest $request, ParentUser $parentUser)
+    public function update(Request $request, $id)
     {
-        $user = ParentUser::findOrFail($parentUser);
+        $user = ParentUser::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|string',
-            'phone_number' => 'required|integer|digits_between:12,12',
-            'address' => 'required|string',
-            'aadhar' => 'required|integer|digits_between:12,12',
-            'pancard' =>'required|regex:/^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/',
-            'email' => 'required|string|unique:users|email',
-            'password' => 'required|string|max:6',
-            'gender'=>'required|String',
+            'name' => 'string',
+            'phone_number' => 'integer|digits_between:12,12',
+            'address' => 'string',
+            'pan_card' =>'regex:/^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/',
+            'email' => 'string|unique:users|email',
+            'password' => 'string|max:25',
+            'gender'=>'string',
 
         ]);
 
@@ -133,8 +134,7 @@ class ParentUserController extends Controller
         $user->name = $request->get('name');
         $user->phone_number= $request->get('phone_number');
         $user->address = $request->get('address');
-        $user->aadhar= $request->get('aadher');
-        $user->pancard= $request->get('pancard');
+        $user->pan_card= $request->get('pan_card');
         $user->email = $request->get('email');
         $user->password = $request->get('password');
         $user->gender = $request->get('gender');
@@ -156,13 +156,20 @@ class ParentUserController extends Controller
 
         return response()->json($user::all());
     }
-    public function showtransaction($transaction)
+    public  function showtransaction($user)
     {
-        $user = Transaction::findOrFail($transaction);
-        return response()->json($user);
+
+        $child = ChildUser::all()->where('first_name','=',$user)->first();
+      $id = $child->id;
+        $card = $child->card_number;
+        $cards = Card::all()->where('child_id','=',$id)->first();
+        $cardNum = $cards->card_number;
+        $transaction = DB::table('transactions')->select('vendor_name', 'transaction_amount',
+            'transaction_date', 'transaction_status')->where('card_number', '=', $cardNum)->get();
+
+        return response()->json($transaction);
 
     }
-
     public function storechild(\Illuminate\Http\Request $request)
     {
         $request->validate([

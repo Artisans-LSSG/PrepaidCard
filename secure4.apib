@@ -1,0 +1,1428 @@
+FORMAT: 1A
+HOST: HOST:/127.0.0.1:8002
+
+# SECURE
+
+Virtual Secures are similar to the regular payment card that you can carry around but it will have information about users' balances that they have been deposited earlier in their Secures. You just need to deposit it with cash and when you run out of balance, YOU ARE GOOD TO GO. For people who don't have any bank accounts and for teenagers too, a Secure can be of great use. Secures can be used online. In case you make payments on a dodgy website or if there is any probability of fraudulent behavior or cybercrimes with your card, your damage will be limited as only the money you have loaded in your Secure will be on the verge of risk. If you assume any kind of threat with your card, you need to contact your Secure provider so that they can block your card.
+##  New User Registration [/api/auth/registration]
+
+
+### Registration [POST]
+
+Here user will register useing his name,e-mail and password for the application 
+
++ Request (application/json) from client side
+
+                       [
+                       {
+                        
+                        "name" : "gurukiran"
+                        "email": "gurukiran@gmail.com"
+                        "password": "********"
+                        "password_confirmation" : "********"
+                       }
+                       ]
+         
+          If JSON details correct with then user will be registered ....
+          
+          
+          {
+        "status": true,
+        "message": "User successfully registered",
+       "user": {
+        "name": "gurukiran",
+        "email": "gurukiran@gmail.com",
+        "updated_at": "2022-03-29T09:00:31.000000Z",
+        "created_at": "2022-03-29T09:00:31.000000Z",
+        "id": 748663707473510401
+}
+
+          HEADER:Content-Type & TYPE
+
+{
++ Header
+  Content-Type:application/json,
+  type: application/json
+
+}
+
+
+
+
+            
+                       
+
+
+
+## User Login [/api/auth/login]
+### Login [POST]
+
+Here user will login useing his e-mail and password  
+
++ Request (application/json) from client side
+
+                       [
+                       {
+                        
+                        "email":"gurukiran@gmail.com",
+                        "password": "********"
+
+                       }
+                       ]
+                       
+{
+       
++ Response 200 (application/json)        
+          If Credentials are correct with then user will be logedin and access token will be generated.
+        
+
+          {
+        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",
+    "token_type": "bearer",
+    "expires_in": 3600,
+    "user": {
+        "id": 748663707473510401,
+        "name": "gurukiran",
+        "email": "gurukiran@gmail.com",
+        "email_verified_at": null,
+        "created_at": "2022-03-29T09:00:31.000000Z",
+        "updated_at": "2022-03-29T09:00:31.000000Z"
+}
+
+         
+
+{
+{
++ Header
+
+  type: application/json
+
+}
+
+}
++ Response 401 (application/json)  
+        If Credentials are wrong then he is an unauthorised user
+
+          {
+     "error": "Unauthorized"
+}
+
+         
+
+
+
+## Refreshing JWT Token [/api/auth/refresh]
+### Refresh Token [GET]
+
+Here JWT Tokens which are assigned to user will be refreshed and new JWT Token will be assigned to them  
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json"
+            Authenticate:"bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4"
+
+
+
+
++ Response 200 (application/json)
+   
+
+If that token is present then that will be changed to new one
+            
+            
+            {
+                
+              "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9yZWZyZXNoIiwiaWF0IjoxNjQ4NTQ5NzMxLCJleHAiOjE2NDg1NTMzNDgsIm5iZiI6MTY0ODU0OTc0OCwianRpIjoiUDdXaHFhTXRYaUNpeElsTyIsInN1YiI6NzQ4NjYzNzA3NDczNTEwNDAxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.x42jqutzBhtjmAlbITQ4y6x_Z0L1XmCT-MNhvjwFU2g",
+                "token_type": "bearer",
+                "expires_in": 3600,
+                "user": {
+                    "id": 748663707473510401,
+                    "name": "gurukiran",
+                    "email": "gurukiran@gmail.com",
+                    "email_verified_at": null,
+                    "created_at": "2022-03-29T09:00:31.000000Z",
+                    "updated_at": "2022-03-29T09:00:31.000000Z"
+                        }
+    
+    
+
+
++ Response 401 (application/json)
+      + Headers
+         Content-Type: application/json,
+         type:application/json
+         Authenticate:"bearer eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",
+        
+                    
+If it is not present 
+            
+                
+             {
+                 "message": "Unauthenticated."
+            }
+
+## User Details View [/api/auth/user-profile]
+### User Profile Featch [POST]
+
+This API featches the account details of user with help of JWT Token of the user. 
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+            Authenticate:"bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",
+
+
+                       
+          
+          
++ Response 200 (application/json)
+
+
+    If that token is present then user details will be featched.
+            
+            
+            {
+                
+              "id": 748685973175861249,
+             "name": "gurukiran",
+            "email": "gurukiran@gmail.com",
+            "email_verified_at": null,
+            "created_at": "2022-03-29T10:53:46.000000Z",
+            "updated_at": "2022-03-29T10:53:46.000000Z"
+                       
+                        }
+
++ Response 401 (application/json)
+  + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+            Authenticate:"bearer J0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",
+
+If it is not present 
+            
+                
+             {
+                 "message": "Unauthenticated."
+            }
+
+
+## User Logout [/api/auth/logout]
+### Logout [POST]
+
+Here user will be logged out with help of this API request
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+            Authenticate:"bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",
+
+
+                       
+          
+          
++ Response 200 (application/json)
+
+
+    If that token is present then user details will be featched.
+            
+            
+            {
+                
+              "message": "User successfully signed out"
+                       
+                        }
+
++ Response 401 (application/json)
+  + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+            Authenticate:"bearer J0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",
+
+If it is not present 
+            
+                
+             {
+                 "message": "Unauthenticated."
+            }
+
+
+
+FORMAT: 1A
+HOST: HOST:/127.0.0.1:8000
+
+# Foregt & Reset Password 
+
+Sending of a Mail to reset the password and Reset for password are done through this API.
+
+##  Reset Mail Sending [/api/auth/sendPasswordResetLink]
+
+
+### Reset Password Link in Mail [POST]
+
+Here user will get request to his registered mail account to reset his account password.
+
++ Request (application/json) from client side
+   
+  
+    [
+    {
+        "email":"gurukiran8861110488@gmail.com"
+    }
+    ]
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+            
+
+                       
+          
+          
++ Response 200 (application/json)
+
+
+    If email is present in database then mail will be sent
+            
+            
+            {
+                
+              "data": "Reset Email is send successfully, please check your inbox."
+                       
+                        }
+
++ Response 401 (application/json)
+  + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+           
+If email it is not present in the database
+            
+                
+             {
+                 "message": "email not found in database"
+            }
+
+
+
+
+            
+                       
+
+
+
+## Password Reset [/api/auth/resetPassword]
+### Reset Password [POST]
+
+In this API password of user will be reset and new passwor will be added in that place. 
+
++ Request (application/json) from client side
+
+                       [
+                       {
+                        
+                        "resetToken" : nk3XWytDJD99pQ0X6kZQueJIn9Craww0eMRwVn8a
+                        "email":"gurukiran8861110488@gmail.com",
+                        "password": "********"
+                        "password_confirmation":"********"
+
+                       }
+                       ]
+                       
+{
+       
++ Response 200 (application/json)        
+          If credentials are is correct then that account will be updated with new password
+          
+        
+
+          {
+             "data": "Password has been updated."
+           }
+
+         
+
+{
+{
++ Header
+
+  type: application/json
+
+}
+
+}
++ Response 442 (application/json)  
+        If Credentials are wrong then 
+
+          {
+              "error": "Either your email or token is wrong."
+}
+
+
+
+FORMAT: 1A
+HOST: HOST:/127.0.0.1:8002
+# ParentUser    
+
+A parent will have the access to signup to the website and give the details of children’s data according to the number of cards he wants.
+ Personalize the limit and restrict according to his requirements.
+
+## KYC Registration of Parent [/api/parent/save]
+
+
+### KYC Registration [POST]
+
+Here ParentUser will register using his name,e-mail,phoen_number,Address,pan_card,gender and password for the application 
+
++ Request (application/json) from client side
+
+                       [
+                       {
+                        
+                             "name":"divya",
+                            "email":"divya123@mpokket.com",
+                            "phone_number":"997098929837",
+                            "address":"91springboard,mgroad,bangalore",
+                            "pan_card":"BDASJ4831C",
+                            "gender":"F",
+                            "password":"Divya123"                                                                                           
+                                                                                                                   
+                       }
+                       ]
+         
+          If JSON details correct with then ParentUser will be registered ....
+          
+          
+          {
+       "name": "divya",
+    "phone_number": "997098929837",
+    "address": "91springboard,mgroad,bangalore",
+    "pan_card": "BDASJ4831C",
+    "email": "divya123@mpokket.com",
+    "gender": "F",
+    "is_approved": "not-approved",
+    "updated_at": "2022-05-03T14:46:10.000000Z",
+    "created_at": "2022-05-03T14:46:10.000000Z",
+    "id": 758640708654661633
+}
+
+          HEADER:Content-Type & TYPE
+
+{
++ Header
+  Content-Type:application/json,
+  type: application/json
+
+}
+
+
+
+
+            
+                       
+
+
+
+## Adding children [/api/parent/child]
+### parent Add Child [POST]
+
+Here user will ADD child using his first_name,last_name,dob,e-mail,phone_number,gender,monthly_limit
+
++ Request (application/json) from client side
+
+                       [
+                       {
+                        
+                        first_name:kishore
+                        last_name:sai
+                        dob:1999/04/18
+                        email:kishore123@gmail.com
+                        phone_number:998765862123
+                        gender:M
+                        monthly_limit:5000
+                        is_approved:not_approved
+                       }
+                       ]
+                       
+{
+       
++ Response 200 (application/json)        
+          If Credentials are correct with then user will be logedin and access token will be generated.
+        
+
+          {
+         "first_name": "kishore",
+    "last_name": "sai",
+    "dob": "1999/04/18",
+    "email": "kishore123@gmail.com",
+    "phone_number": "998765862123",
+    "gender": "M",
+    "monthly_limit": "5000",
+    "is_approved": "not-approved",
+    "parent_id": 758340020035944449,
+    "updated_at": "2022-05-03T14:52:46.000000Z",
+    "created_at": "2022-05-03T14:52:46.000000Z",
+    "id": 758642003432046593
+}
+
+         
+
+{
+{
++ Header
+
+  type: application/json
+
+}
+
+}
++ Response 422 (application/json)  
+        If Credentials are wrong then he is an unauthorised user
+
+    {
+    "message": "The given data was invalid.",
+    "errors": {
+        "phone_number": [
+            "The phone number must be between 12 and 12 digits."
+        ]
+    }
+}
+         
+
+
+
+## Child Transaction Check [/api/parents/transaction/child/{first_name}]
+### Child-Transactions [GET]
+
+Here JWT Tokens which are assigned to user will be child transaction check.
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json"
+
+    + Body
+            url:/api/parents/transaction/child/{first_name}
+
+
++ Response 200 (application/json)
+   
+
+If that token is present then that will be changed to new one
+            
+            
+          
+    {
+        "vendor_name": "Vicenta",
+        "transaction_amount": 2280,
+        "transaction_date": "1980-02-29 00:00:00",
+        "transaction_status": true
+    },
+    {
+        "vendor_name": "Constance",
+        "transaction_amount": 4973,
+        "transaction_date": "1990-01-11 00:00:00",
+        "transaction_status": false
+    },
+    {
+        "vendor_name": "Milton",
+        "transaction_amount": 3431,
+        "transaction_date": "2012-11-24 00:00:00",
+        "transaction_status": true
+    },
+    {
+        "vendor_name": "Aaron",
+        "transaction_amount": 4704,
+        "transaction_date": "1986-09-02 00:00:00",
+        "transaction_status": false
+    },
+    {
+        "vendor_name": "Vivien",
+        "transaction_amount": 4369,
+        "transaction_date": "1976-12-20 00:00:00",
+        "transaction_status": false
+    }
+    
+    
+
+
++ Response 401 (application/json)
+      + Headers
+         Content-Type: application/json,
+         type:application/json
+
+                    
+If it is not present 
+            
+                
+             {
+                 "message": "Unauthenticated."
+            }
+
+## Parent Check ChildUser Details  [/api//parents/child/{first_name}]
+### ChildUser Profile [GET]
+
+This API featches the account details of childuser with help of JWT Token of the user. 
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+            Authenticate:"bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",
+
+
+                       
+          
+          
++ Response 200 (application/json)
+
+
+    If that token is present then childuser details will be featched.
+            
+                        
+                        {
+                "id": 758348070933889025,
+                "parent_id": 758340715997822977,
+                "first_name": "kishore",
+                "last_name": "sai",
+                "dob": "1999-04-18",
+                "email": "kishore123@gmail.com",
+                "phone_number": "998765862123",
+                "gender": "M",
+                "monthly_limit": 5000,
+                "is_approved": "not-approved",
+                "created_at": "2022-05-02T13:57:45.000000Z",
+                "updated_at": "2022-05-02T13:57:45.000000Z"
+            }
+
++ Response 401 (application/json)
+  + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+
+If it is not present 
+            
+                
+             {
+                 "message": "Unauthenticated."
+            }
+
+
+## ParentUser Update Details [/api/parent/update/{id}]
+### ParentUser update [PUT]
+
+Here ParentUser will Update using his name,e-mail,phoen_number,Address,pan_card,gender and password for the application 
+
++ Request (application/json) from client side
+
+                       [
+                       {
+                                                    
+                             "name":"shiva",
+                            "email":"shiva123@mpokket.com",
+                            "phone_number":"987654321734",
+                            "address":"91springboard,mgroad,bangalore",
+                            "pan_card":"CFVPH4131C",
+                            "gender":"M",
+                            "aadhar":"1234567890&7",
+                            "password":"Shiva7"                                                                                          
+                                                                                                                   
+                       }
+                       ]
+         
+          If JSON details correct with then ParentUser will be registered ....
+          
+          
+          {
+           "id": 758340006781779969,
+            "name": "shiva",
+            "email": "shiva123@mpokket.com",
+            "phone_number": "987654321734",
+            "address": "91springboard,mgroad,bangalore",
+            "pan_card": "CFVPH4131C",
+            "gender": "M",
+            "is_approved": "approved",
+            "created_at": "2022-05-02T13:16:43.000000Z",
+            "updated_at": "2022-05-03T16:50:01.000000Z"
+}
+
++ Response 401 (application/json)
+  + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+         
+
+
+
+FORMAT: 1A
+HOST: HOST:/127.0.0.1:8002
+
+# ADMIN
+
+New Admin User operations is done through this API
+
+##  New Admin User Registration [/api/admin/save]
+
+
+### Admin Registration [POST]
+
+Here Admin will register useing his name,e-mail,phone_number,address,dob,joining_date and password for the application 
+
++ Request (application/json) from client side
+
+                       [
+                       {
+                        
+                        name:madhu
+                        email:madhu123@gmail.com
+                        password:123456
+                        phone_number:987654321019
+                        address:bangalore
+                        dob:1999-08-06
+                        joined_date:2021-12-07
+                       }
+                       ]
+         
+          If JSON details correct with then Admin will be registered ....
+          
+          
+          {
+         "name": "madhu",
+    "phone_number": "987654321019",
+    "address": "bangalore",
+    "email": "madhu123@gmail.com",
+    "password": "123456",
+    "dob": "1999-08-06",
+    "joined_date": "2021-12-07",
+    "updated_at": "2022-05-03T17:03:37.000000Z",
+    "created_at": "2022-05-03T17:03:37.000000Z",
+    "id": 758667730918080513
+}
+
+          HEADER:Content-Type & TYPE
+
+{
++ Header
+  Content-Type:application/json,
+  type: application/json
+
+}
+
+## ParentUser Approve [/api/admin/approve]
+### ParentUser approval [POST]
+
+Here parentuser will approve using his user_id and approvad. 
+
++ Request (application/json) from client side
+
+                       [
+                       {
+                        
+                        user_id:758340006781779969
+                        approved:approved
+
+                       }
+                       ]
+                       
+{
+       
++ Response 200 (application/json)        
+          If Credentials are correct with then admin will be approved.
+        
+
+          {
+   "Request Approved"
+}else
+{
+"User is already Approved"
+}
+         
+
+{
+{
++ Header
+
+  type: application/json
+
+}
+
+}
++ Response 401 (application/json)  
+        If Credentials are wrong then he is an unauthorised user
+
+          {
+     "error": "Unauthorized"
+}
+
+         
+
+
+## ParentUser Reject [/api/admin/reject]
+### ParentUser Reject [POST]
+
+Here parentuser will reject using his user_id and approve. 
+
++ Request (application/json) from client side
+
+                       [
+                       {
+                        
+                        user_id:758340006781779969
+                        approve:not_approved
+
+                       }
+                       ]
+                       
+{
+       
++ Response 200 (application/json)        
+          If Credentials are correct with then admin will be approved.
+        
+
+          {
+   "User Temp not approved"
+}else
+{
+"Request pending"
+}
+         
+
+{
+{
++ Header
+
+  type: application/json
+
+}
+
+}
++ Response 401 (application/json)  
+        If Credentials are wrong then he is an unauthorised user
+
+          {
+     "error": "Unauthorized"
+}
+
+
+
+
+##  Parentuser Requests [/api/admin/request-status]
+### Request-notification [GET]
+
+Here which are assigned to parentuser will be request notification
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json"
+
+
+
+
++ Response 200 (application/json)
+   
+
+If that token is present then that will be changed to new one
+            
+                        
+                       {
+                    "id": 758340015824011265,
+                    "name": "Westley",
+                    "email": "lgoldner@oconner.com",
+                    "phone_number": "1-786-434-7948",
+                    "password": "$2y$10$6Tt332CPrcaxZoC2fNvKruZhYdwuG1SxGMJAzd5koVZuIgf/b44wG",
+                    "address": "34612 Ritchie Burg Apt. 123\nBillfurt, OK 79331-0187",
+                    "pan_card": "JAFIR2963(U",
+                    "gender": "Male",
+                    "is_approved": "not_approved",
+                    "remember_token": null,
+                    "created_at": "2022-05-02 13:16:46",
+                    "updated_at": "2022-05-02 13:16:46"
+                },
+                {
+                    "id": 758340085716090881,
+                    "name": "Selina",
+                    "email": "hodkiewicz.martin@mcdermott.com",
+                    "phone_number": "(463) 842-2514",
+                    "password": "$2y$10$nDB.tbPHHBXEvjMBV03xuukc.jY2RetV1CIdo3Xl5KnwVQIfnLTmG",
+                    "address": "1795 Krystel Common Apt. 325\nVaughnberg, MI 07351",
+                    "pan_card": "CCAGI1917(B",
+                    "gender": "Male",
+                    "is_approved": "not_approved",
+                    "remember_token": null,
+                    "created_at": "2022-05-02 13:17:08",
+                    "updated_at": "2022-05-02 13:17:08"
+                }
+    
+    
++ Response 401 (application/json)
+      + Headers
+         Content-Type: application/json,
+         type:application/json
+
+
+
+## ChildUser Approve [/api/admin/childapprove]
+### ChildUser approval [POST]
+
+Here childuser will approve using his child_id and approvad. 
+
++ Request (application/json) from client side
+
+                       [
+                       {
+                        
+                        child_id:758353314125643777
+                        approved:approved
+
+                       }
+                       ]
+                       
+{
+       
++ Response 200 (application/json)        
+          If Credentials are correct with then admin will be approved.
+        
+
+          {
+   "Request Approved"
+}else
+{
+"User is already Approved"
+}
+         
+
+{
+{
++ Header
+
+  type: application/json
+
+}
+
+}
++ Response 401 (application/json)  
+        If Credentials are wrong then he is an unauthorised user
+
+          {
+     "error": "Unauthorized"
+}
+
+         
+
+## ChildUser Reject [/api/admin/childreject]
+### ChildUser Reject [POST]
+
+Here childuser will reject using his child_id and approve. 
+
++ Request (application/json) from client side
+
+                       [
+                       {
+                        
+                        user_id:758353314125643777
+                        approve:not_approved
+
+                       }
+                       ]
+                       
+{
+       
++ Response 200 (application/json)        
+          If Credentials are correct with then admin will be approved.
+        
+
+          {
+   "User Temp not approved"
+}else
+{
+"Request pending"
+}
+         
+
+{
+{
++ Header
+
+  type: application/json
+
+}
+
+}
++ Response 401 (application/json)  
+        If Credentials are wrong then he is an unauthorised user
+
+          {
+     "error": "Unauthorized"
+}
+
+
+##  Childuser Requests [/api/admin/childrequest-status]
+### Request-notification [GET]
+
+Here which are assigned to childuser will be request notification
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json"
+
+
+
+
++ Response 200 (application/json)
+   
+
+If that token is present then that will be changed to new one
+            
+                        
+                                    {
+                    "id": 758340040205500417,
+                    "parent_id": 758340013102071809,
+                    "first_name": "Tre",
+                    "last_name": "Weimann",
+                    "dob": "2019-04-13",
+                    "email": "reyes90@mayer.biz",
+                    "phone_number": "914.333.5535",
+                    "gender": "Female",
+                    "monthly_limit": 3000,
+                    "is_approved": "not_approved",
+                    "created_at": "2022-05-02 13:16:54",
+                    "updated_at": "2022-05-02 13:16:54"
+                },
+                {
+                    "id": 758340051528384513,
+                    "parent_id": 758340024838291457,
+                    "first_name": "Marquise",
+                    "last_name": "Rice",
+                    "dob": "1989-01-10",
+                    "email": "alysson.langosh@casper.com",
+                    "phone_number": "707.529.7375",
+                    "gender": "Male",
+                    "monthly_limit": 4000,
+                    "is_approved": "not_approved",
+                    "created_at": "2022-05-02 13:16:57",
+                    "updated_at": "2022-05-02 13:16:57"
+                }
+                
++ Response 401 (application/json)
+      + Headers
+         Content-Type: application/json,
+         type:application/json
+
+
+## All ParentUser Details View [/api/parents]
+### ParentUser Profile Featch [GET]
+
+This API featches the All details of ParentUser with help of JWT Token of the parentuser. 
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+        
+                       
+          
+          
++ Response 200 (application/json)
+
+
+    If that token is present then parentuser details will be featched.
+            
+            
+         {
+        "id": 758340006781779969,
+        "name": "Dolly",
+        "email": "hauck.joe@kassulke.org",
+        "phone_number": "(240) 493-1066",
+        "address": "331 Giovani Landing\nWisozkhaven, MI 28072-2681",
+        "pan_card": "EOWKG9879(F",
+        "gender": "Male",
+        "is_approved": "approved",
+        "created_at": "2022-05-02T13:16:43.000000Z",
+        "updated_at": "2022-05-02T13:16:43.000000Z"
+    },
+    {
+        "id": 758340013102071809,
+        "name": "Anastasia",
+        "email": "davis.maud@gmail.com",
+        "phone_number": "929.218.2365",
+        "address": "54308 Beier Junctions\nMarquardtland, FL 11012",
+        "pan_card": "SVWZG3156X",
+        "gender": "Male",
+        "is_approved": "approved",
+        "created_at": "2022-05-02T13:16:45.000000Z",
+        "updated_at": "2022-05-02T13:16:45.000000Z"
+    }
+
++ Response 401 (application/json)
+  + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+           
+If it is not present 
+            
+                
+             {
+                 "message": "Unauthenticated."
+            }
+
+## All ChildUser Details View [/api/childs]
+### ChildUser Profile Featch [GET]
+
+This API featches the All details of ChildUser with help of JWT Token of the childuser. 
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+        
+                       
+          
+          
++ Response 200 (application/json)
+
+
+    If that token is present then childuser details will be featched.
+            
+        {
+        "id": 758340040205500417,
+        "parent_id": 758340013102071809,
+        "first_name": "Tre",
+        "last_name": "Weimann",
+        "dob": "2019-04-13",
+        "email": "reyes90@mayer.biz",
+        "phone_number": "914.333.5535",
+        "gender": "Female",
+        "monthly_limit": 3000,
+        "is_approved": "not_approved",
+        "created_at": "2022-05-02T13:16:54.000000Z",
+        "updated_at": "2022-05-02T13:16:54.000000Z"
+    },
+    {
+        "id": 758340044831227905,
+        "parent_id": 758340020035944449,
+        "first_name": "Kaylie",
+        "last_name": "Macejkovic",
+        "dob": "2017-02-20",
+        "email": "goldner.graciela@friesen.net",
+        "phone_number": "+18485000880",
+        "gender": "Male",
+        "monthly_limit": 3000,
+        "is_approved": "approved",
+        "created_at": "2022-05-02T13:16:55.000000Z",
+        "updated_at": "2022-05-02T13:16:55.000000Z"
+    }
+
++ Response 401 (application/json)
+  + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+           
+If it is not present 
+            
+                
+             {
+                 "message": "Unauthenticated."
+            }
+            
+            
+## All Cards Details View [/api/cards]
+### Cards Profile Featch [GET]
+
+This API featches the All details of Cards with help of JWT Token of the cards. 
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+        
+                       
+          
+          
++ Response 200 (application/json)
+
+
+    If that token is present then cards details will be featched.
+            
+            
+             {
+                "id": 758340545855029249,
+                "child_id": 758340067374628865,
+                "card_number": 4556925166136620,
+                "exp_date": "2022-10-26",
+                "cvv": 650,
+                "created_at": "2022-05-02T13:19:28.000000Z",
+                "updated_at": "2022-05-02T13:19:28.000000Z"
+            },
+            {
+                "id": 758340550233653249,
+                "child_id": 758340061228433409,
+                "card_number": 5423168573290445,
+                "exp_date": "2023-03-25",
+                "cvv": 429,
+                "created_at": "2022-05-02T13:19:29.000000Z",
+                "updated_at": "2022-05-02T13:19:29.000000Z"
+            }
+
++ Response 401 (application/json)
+  + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+           
+If it is not present 
+            
+                
+             {
+                 "message": "Unauthenticated."
+            }
+            
+## All Transactions Details View [/api/transactions]
+### Transaction Profile Featch [GET]
+
+This API featches the All details of Transactions with help of JWT Token of the transactions. 
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+        
+                       
+          
+          
++ Response 200 (application/json)
+
+
+    If that token is present then transactions details will be featched.
+            
+        {
+        "id": 758341903651635201,
+        "card_number": 5423168573290445,
+        "vendor_name": "Constance",
+        "transaction_amount": 2880,
+        "limit_balance": 120,
+        "transaction_date": "2014-05-25 00:00:00",
+        "transaction_status": true,
+        "transaction_type": "Refund",
+        "created_at": "2022-05-02T13:26:22.000000Z",
+        "updated_at": "2022-05-02T13:26:22.000000Z"
+    },
+    {
+        "id": 758341906831966209,
+        "card_number": 5423168573290445,
+        "vendor_name": "Kaycee",
+        "transaction_amount": 1502,
+        "limit_balance": 5000,
+        "transaction_date": "2016-09-18 00:00:00",
+        "transaction_status": false,
+        "transaction_type": "Credit",
+        "created_at": "2022-05-02T13:26:23.000000Z",
+        "updated_at": "2022-05-02T13:26:23.000000Z"
+    },
+    {
+        "id": 758341976101421057,
+        "card_number": 4929243189209394,
+        "vendor_name": "Vicenta",
+        "transaction_amount": 2280,
+        "limit_balance": 2720,
+        "transaction_date": "1980-02-29 00:00:00",
+        "transaction_status": true,
+        "transaction_type": "Credit",
+        "created_at": "2022-05-02T13:26:45.000000Z",
+        "updated_at": "2022-05-02T13:26:45.000000Z"
+    }
++ Response 401 (application/json)
+  + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+           
+If it is not present 
+            
+                
+             {
+                 "message": "Unauthenticated."
+            }
+            
+## All Refunds Details View [/api/refunds]
+### Refunds Profile Featch [GET]
+
+This API featches the All details of Refunds with help of JWT Token of the refunds. 
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+        
+                       
+          
+          
++ Response 200 (application/json)
+
+
+    If that token is present then refunds details will be featched.
+            
+            
+             {
+        "id": 758342472934326273,
+        "transaction_id": "758341984322355201",
+        "refund_amount": 4369,
+        "refund_status": true,
+        "refund_date": "1977-06-08",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 758342477502054401,
+        "transaction_id": "758341978661912577",
+        "refund_amount": 4973,
+        "refund_status": false,
+        "refund_date": "2018-03-27",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 758342479660810241,
+        "transaction_id": "758342086905495553",
+        "refund_amount": 2923,
+        "refund_status": true,
+        "refund_date": "2019-04-01",
+        "created_at": null,
+        "updated_at": null
+    }
+
++ Response 401 (application/json)
+  + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+           
+If it is not present 
+            
+                
+             {
+                 "message": "Unauthenticated."
+            }
+          
+## All Vendors Details View [/api/vendors]
+### Vendors Profile Featch [GET]
+
+This API featches the All details of Vendors with help of  JWT Token of the Vendors. 
+
++ Request (application/json) from client side
+
+     
+    + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+        
+                       
+          
+          
++ Response 200 (application/json)
+
+
+    If that token is present then transactions details will be featched.
+            
+        {
+        "id": 758340820434157569,
+        "name": "Vicenta",
+        "email": "kshlerin.isobel@hotmail.com",
+        "phone_number": "(281) 568-1799",
+        "password": ">a4Q1a@v^",
+        "address": "2875 Klein Haven\nEast Fabian, OH 98583",
+        "created_at": "2022-05-02T13:20:52.000000Z",
+        "updated_at": "2022-05-02T13:20:52.000000Z"
+    },
+    {
+        "id": 758349028829429761,
+        "name": "parakh",
+        "email": "nikhil123@gmail.com",
+        "phone_number": "799733221124",
+        "password": "nikhil77",
+        "address": "bangalore",
+        "created_at": "2022-05-02T14:02:37.000000Z",
+        "updated_at": "2022-05-02T14:02:37.000000Z"
+    }
++ Response 401 (application/json)
+  + Headers
+            Content-Type: "application/json",
+            type:"application/json",
+           
+If it is not present 
+            
+                
+             {
+                 "message": "Unauthenticated."
+            }
+            
+## Admin User Details Update [/api/admin/update/{id}]
+### Admin Update [PUT]
+
+Here Admin will update using his name,e-mail,phone_number,address,dob,joining_date and password for the application 
+
++ Request (application/json) from client side
+
+                       [
+                      {
+                        "name":"chinnu",
+                    "email":"chinnu122354@gmail.com",
+                    "password":"123456",
+                    "phone_number":"987654321012",
+                    "address":"bangalore",
+                    "dob":"1999-08-06",
+                    "joined_date":"2021-12-11"
+                    }
+                       ]
+         
+          If JSON details correct with then Admin will be updated ....
+          
+          
+                   {
+                "id": 758667730918080513,
+                "name": "chinnu",
+                "email": "chinnu122354@gmail.com",
+                "phone_number": "987654321012",
+                "password": "123456",
+                "address": "bangalore",
+                "dob": "1999-08-06",
+                "joined_date": "2021-12-11",
+                "remember_token": null,
+                "created_at": "2022-05-03T17:03:37.000000Z",
+                "updated_at": "2022-05-03T18:13:48.000000Z"
+            }
+
+          HEADER:Content-Type & TYPE
+
+{
++ Header
+  Content-Type:application/json,
+  type: application/json
+
+}
+

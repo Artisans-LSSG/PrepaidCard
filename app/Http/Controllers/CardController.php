@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCardRequest;
 use App\Http\Requests\UpdateCardRequest;
 use App\Models\Card;
+use App\Models\ChildUser;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ChildUserController;
+use Illuminate\Support\Facades\DB;
 
 class CardController extends Controller
 {
@@ -34,23 +37,31 @@ class CardController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreCardRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
         $request->validate([
+            'child_id'=>'required|integer',
             'card_number' => 'required|integer|digits_between:16,16',
             'exp_date' => 'date',
-            'cvv' => 'required|integer'
-        ]);
+            'cvv' => 'required|integer|digits_between:3,3',
 
-        $newCard = new Card([
+        ]);
+    //    $x = CardController::showchild($request->get('card_number'));
+
+//        $Child_id = ChildUser::all()->where('id','=',$request->get('child_id'))->first();
+//        $cid = $Child_id->id;
+
+        $newCard = DB::table('cards')->insert([
+            'child_id'=>$request->get('child_id'),
+
             'card_number'=>$request->get('card_number'),
             'exp_date'=>$request->get('exp_date'),
             'cvv'=>$request->get('cvv'),
         ]);
 
-        $newCard->save();
+    //    $r = array($newCard,$x);
 
         return response()->json($newCard);
     }
@@ -58,12 +69,16 @@ class CardController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Card  $card
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Card $card)
+    public function show($id)
     {
-        $user = Card::findOrFail($card);
-        return response()->json($user);
+        $user = Card::all()->where('id','=',$id)->first();
+        $rt = $user->card_number;
+        $x = $user->child_id;
+        $t = ChildUser::all()->where('id','=',$x)->first();
+        $n = $t->first_name;
+        return response()->json(["Child_Name"=>$n,"Card_Details"=>$user]);
     }
 
     /**
@@ -82,7 +97,7 @@ class CardController extends Controller
      *
      * @param  \App\Http\Requests\UpdateCardRequest  $request
      * @param  \App\Models\Card  $card
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(UpdateCardRequest $request, Card $card)
     {
@@ -106,7 +121,7 @@ class CardController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Card  $card
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Card $card)
     {
@@ -114,5 +129,13 @@ class CardController extends Controller
         $user->delete();
 
         return response()->json($user::all());
+    }
+    public function showchild($cn){
+        $r = Card::all()->where('card_number','=',$cn)->first();
+        $x = $r->child_id;
+        $t = ChildUser::all()->where('id','=',$x)->first();
+        $n = $t->first_name;
+        return ($n);
+
     }
 }

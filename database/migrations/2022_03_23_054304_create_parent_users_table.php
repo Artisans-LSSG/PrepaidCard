@@ -20,8 +20,9 @@ class CreateParentUsersTable extends Migration
             $table->string('phone_number')->unique();
             $table->string('password')->unique();
             $table->string('address');
-            $table->string('pancard')->unique();
+            $table->string('pan_card')->unique();
             $table->string('gender');
+            $table->string('is_approved');
             $table->rememberToken();
             $table->timestamps();
         });

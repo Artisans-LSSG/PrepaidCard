@@ -10,8 +10,9 @@ class refunds extends Model
     use HasFactory;
 
     protected $fillable = [
-        'transaction_id',
+        'id',
         'refund_amount',
+        'refund_status',
         'refund_date',
 
     ];

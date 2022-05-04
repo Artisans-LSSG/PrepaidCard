@@ -22,6 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('limit_balance');
             $table->timestamp('transaction_date');
             $table->boolean('transaction_status');
+            $table->string('transaction_type');
             $table->timestamps();
         });
     }

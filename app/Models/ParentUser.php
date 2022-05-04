@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 
 class ParentUser extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory;
 
     protected $fillable = [
         'name',
@@ -16,6 +17,14 @@ class ParentUser extends Model
         'password',
         'address',
         'gender',
-        'pancard',
+        'pan_card',
+        'is_approved',
+    ];
+    protected $hidden =[
+        'password',
+        'remember_token'
+    ];
+    protected $casts = [
+        'email_verified_at'=> 'datetime',
     ];
 }

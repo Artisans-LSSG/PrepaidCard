@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\StoreadminRequest;
@@ -12,6 +13,7 @@ use App\Models\ParentUser;
 use App\Models\refunds;
 use App\Models\Transaction;
 use App\Models\vendor;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -42,7 +44,7 @@ class AdminController extends Controller
      * @param \App\Http\Requests\StoreadminRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreadminRequest $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string',
@@ -51,7 +53,7 @@ class AdminController extends Controller
             'phone_number' => 'required|integer|digits_between:12,12',
             'address' => 'required|string',
             'dob' => 'date',
-            'joining_date'=>'date',
+            'joined_date'=>'date',
         ]);
         $newAdmin = new admin([
             'name' => $request->get('name'),
@@ -60,7 +62,7 @@ class AdminController extends Controller
             'email'=>$request->get('email'),
             'password'=>$request->get('password'),
             'dob'=>$request->get('dob'),
-            'joining_date'=>$request->get('joining_date'),
+            'joined_date'=>$request->get('joined_date'),
         ]);
 
         $newAdmin->save();
@@ -103,9 +105,9 @@ class AdminController extends Controller
      * @param \App\Models\admin $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateadminRequest $request, admin $admin)
+    public function updateData(Request $request,$id)
     {
-        $admin = admin::findOrFail($admin);
+        $admin = admin::findOrFail($id);
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|unique:users|email',
@@ -113,15 +115,15 @@ class AdminController extends Controller
             'phone_number' => 'required|integer|digits_between:12,12',
             'address' => 'required|string',
             'dob' => 'date',
-            'joining_date'=>'date',
+            'joined_date'=>'date',
         ]);
         $admin->name = $request->get('name');
         $admin->email = $request->get('email');
         $admin->password = $request->get('password');
         $admin->phone_number= $request->get('phone_number');
-        $admin->aadhar= $request->get('aadher');
+        $admin->address= $request->get('address');
         $admin->dob = $request->get('dob');
-        $admin->joining_date = $request->get('joining_date');
+        $admin->joined_date = $request->get('joined_date');
         $admin->save();
         return response()->json($admin);
 
@@ -161,8 +163,11 @@ class AdminController extends Controller
     public function showcard($card)
     {
         //$user = Card::findOrFail($card);
-        $user = Card::where('card_number', '=', $card)->firstOrFail();
-        return response()->json($user);
+        $user = Card::where('card_number', '=', $card)->first();
+        $cid=$user->child_id;
+        $t = ChildUser::all()->where('id','=',$cid)->first();
+        $n = $t->first_name;
+        return response()->json(["Child_Name"=>$n,"Card-Details"=>$user]);
     }
     public function showrefund( $refund_id)
     {
@@ -173,5 +178,90 @@ class AdminController extends Controller
     {
         $vendors = Vendor::findOrFail($vendor);
         return response()->json($vendors);
+    }
+    public function approve(\Illuminate\Http\Request $request){
+        $r = ParentUser::all()->where('id','=',$request->get('user_id'))->first();
+//       return $r;
+        $rs =$r->is_approved;
+//        return $rs;
+//        die();
+        if($rs == "not_approved"){
+            DB::table('parent_users')->
+            where('id','=',$request->get('user_id'))
+                ->update(['is_approved'=>"approved"]);
+
+            return response()->json("Request Approved");
+        }else{
+            return response()->json("User is already Approved");
+        }
+
+    }
+
+    public function reject(\Illuminate\Http\Request $request){
+        $r = ParentUser::all()->where('id','=',$request->get('user_id'))->first();
+//        return $r;
+        $rs =$r->is_approved;
+//        return $rs;
+//        die();
+        if($rs == "approved"){
+            DB::table('parent_users')->
+            where('id','=',$request->get('user_id'))
+                ->update(['is_approved'=>"not_approved"]);
+
+            return response()->json("User Temp not approved");
+        }else{
+            return response()->json("Request pending  ");
+        }
+
+    }
+    public function requestStatus(){
+        $users = DB::table('parent_users')
+            ->where('is_approved' , '=' , 'not_approved')
+            ->get();
+
+        return $users;
+    }
+
+    public function childapprove(\Illuminate\Http\Request $request){
+        $r = ChildUser::all()->where('id','=',$request->get('child_id'))->first();
+//       return $r;
+        $rs =$r->is_approved;
+//        return $rs;
+//        die();
+        if($rs == "not_approved"){
+            DB::table('child_users')->
+            where('id','=',$request->get('child_id'))
+                ->update(['is_approved'=>"approved"]);
+
+            return response()->json("Request Approved");
+        }else{
+            return response()->json("User is already Approved");
+        }
+
+    }
+
+    public function childreject(Request $request){
+        $r = ChildUser::all()->where('id','=',$request->get('child_id'))->first();
+//        return $r;
+        $rs =$r->is_approved;
+//        return $rs;
+//        die();
+        if($rs == "approved"){
+            DB::table('child_users')->
+            where('id','=',$request->get('child_id'))
+                ->update(['is_approved'=>"not_approved"]);
+
+            return response()->json("User Temp not approved");
+        }else{
+            return response()->json("Request pending  ");
+        }
+
+    }
+    public function childrequestStatus(\Illuminate\Http\Request $request){
+        $users = DB::table('child_users')
+            ->where('is_approved' , '=' , 'not_approved')
+            ->get();
+
+        return $users;
     }
 }

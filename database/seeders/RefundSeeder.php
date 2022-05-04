@@ -28,7 +28,7 @@ class RefundSeeder extends Seeder
                 'transaction_id' => $trans_id,
                 'refund_amount' => $trans_amount,
                 'refund_date' => $faker->dateTimeBetween($transaction_date, '+1 week'),
-                'refund_status' => 1,
+                'refund_status' => rand(0,1),
 
 
 //
