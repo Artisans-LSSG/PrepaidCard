@@ -1,0 +1,943 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>SECURE</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><style>@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}body{color:black;background:white;font:400 14px / 1.42 'Roboto',Helvetica,sans-serif}header{border-bottom:1px solid #f2f2f2;margin-bottom:12px}h1,h2,h3,h4,h5{color:black;margin:12px 0}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:0;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}.triple h1 .permalink,.triple h2 .permalink,.triple h3 .permalink,.triple h4 .permalink,.triple h5 .permalink{opacity:.15}.triple h1:hover .permalink,.triple h2:hover .permalink,.triple h3:hover .permalink,.triple h4:hover .permalink,.triple h5:hover .permalink{opacity:.15}h1{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:36px}h2{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:30px}h3{font-size:100%;text-transform:uppercase}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}a{color:#428bca;text-decoration:none}li p{margin:0}hr.split{border:0;height:1px;width:100%;padding-left:6px;margin:12px auto;background-image:linear-gradient(to right, rgba(0,0,0,0) 20%, rgba(0,0,0,0.2) 51.4%, rgba(255,255,255,0.2) 51.4%, rgba(255,255,255,0) 80%)}dl dt{float:left;width:130px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:150px}blockquote{color:rgba(0,0,0,0.5);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto}pre code{color:black;background-color:transparent;padding:0;border:none}code{color:#444;background-color:#f5f5f5;font:'Inconsolata',monospace;padding:1px 4px;border:1px solid #cfcfcf;border-radius:3px}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #e6e6e6}.text-muted{opacity:.5}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:200 36px 'Raleway',Helvetica,sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:black;background-color:#f0f6fb;border-left:4px solid #428bca}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#428bca}.warning{color:black;background-color:#fbf1f0;border-left:4px solid #c9302c}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#c9302c}header{margin-top:24px}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:black;opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #d9d9d9;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul>li{margin:0}nav ul>li:first-child{margin-top:-12px}nav ul>li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav>div>div>ul>li:first-child>a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:14px;padding:3px 7px;font-size:12px;color:#000;background-color:#f2f2f2;border-radius:10px;margin:-2px 0}.badge.get{color:#70bbe1;background-color:#d9edf7}.badge.head{color:#70bbe1;background-color:#d9edf7}.badge.options{color:#70bbe1;background-color:#d9edf7}.badge.put{color:#f0db70;background-color:#fcf8e3}.badge.patch{color:#f0db70;background-color:#fcf8e3}.badge.post{color:#93cd7c;background-color:#dff0d8}.badge.delete{color:#ce8383;background-color:#f2dede}.collapse-button{float:right}.collapse-button .close{display:none;color:#428bca;cursor:pointer}.collapse-button .open{color:#428bca;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:'';display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%}.container-fluid.triple nav{width:16.5%;padding-right:1px}.container-fluid.triple .row .content{position:relative;margin-left:16.5%;padding-left:24px}.middle:before,.middle:after{content:'';display:table}.middle:after{clear:both}.middle{box-sizing:border-box;width:51.5%;padding-right:12px}.right{box-sizing:border-box;float:right;width:48.5%;padding-left:12px}.right a{color:#428bca}.right h1,.right h2,.right h3,.right h4,.right h5,.right p,.right div{color:white}.right pre{background-color:#1d1f21;border:1px solid #1d1f21}.right pre code{color:#c5c8c6}.right .description{margin-top:12px}.triple .resource-heading{font-size:125%}.definition{margin-top:12px;margin-bottom:12px}.definition .method{font-weight:bold}.definition .method.get{color:#2e8ab8}.definition .method.head{color:#2e8ab8}.definition .method.options{color:#2e8ab8}.definition .method.post{color:#56b82e}.definition .method.put{color:#b8a22e}.definition .method.patch{color:#b8a22e}.definition .method.delete{color:#b82e2e}.definition .uri{word-break:break-all;word-wrap:break-word}.definition .hostname{opacity:.5}.example-names{background-color:#eee;padding:12px;border-radius:6px}.example-names .tab-button{cursor:pointer;color:black;border:1px solid #ddd;padding:6px;margin-left:12px}.example-names .tab-button.active{background-color:#d5d5d5}.right .example-names{background-color:#444}.right .example-names .tab-button{color:white;border:1px solid #666;border-radius:6px}.right .example-names .tab-button.active{background-color:#5e5e5e}#nav-background{position:fixed;left:0;top:0;bottom:0;width:16.5%;padding-right:14.4px;background-color:#fbfbfb;border-right:1px solid #f0f0f0;z-index:-1}#right-panel-background{position:absolute;right:-12px;top:-12px;bottom:-12px;width:48.6%;background-color:#333;z-index:-1}@media (max-width:1200px){nav{width:198px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:169.4px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content,.container-fluid.triple .row .content{margin-left:auto;margin-right:auto;width:95%}#nav-background{display:none}#right-panel-background{width:48.6%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.5);background-color:#f2f2f2;text-decoration:none !important;border-top:1px solid #d9d9d9;border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #d9d9d9;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#f2f2f2;border-bottom:1px solid #d9d9d9;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.triple .content .resource-group{padding:0;border:none}.triple .content .resource-group h2.group-heading,.triple .content .resource-group .heading a{margin:0 0 12px 0;border:1px solid #d9d9d9}nav .resource-group .heading a{padding:12px;margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:6px 12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;overflow:hidden}.action h4.action-heading .name{float:right;font-weight:normal;padding:6px 0}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px;display:inline-block}.action h4.action-heading .method.get{color:#fff;background-color:#337ab7}.action h4.action-heading .method.head{color:#fff;background-color:#337ab7}.action h4.action-heading .method.options{color:#fff;background-color:#337ab7}.action h4.action-heading .method.put{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.patch{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.post{color:#fff;background-color:#5cb85c}.action h4.action-heading .method.delete{color:#fff;background-color:#d9534f}.action h4.action-heading code{color:#444;background-color:#f5f5f5;border-color:#cfcfcf;font-weight:normal;word-break:break-all;display:inline-block;margin-top:2px}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#bce8f1}.action.get h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.head{border-color:#bce8f1}.action.head h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.options{border-color:#bce8f1}.action.options h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.post{border-color:#d6e9c6}.action.post h4.action-heading{color:#5cb85c;background:#dff0d8;border-bottom-color:#d6e9c6}.action.put{border-color:#faebcc}.action.put h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.patch{border-color:#faebcc}.action.patch h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.delete{border-color:#ebccd1}.action.delete h4.action-heading{color:#d9534f;background:#f2dede;border-bottom-color:#ebccd1}</style></head><body class="preload"><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#">Resource Group</a></div><div class="collapse-content"><ul><li><a href="#new-user-registration-post"><span class="badge post"><i class="fa fa-plus"></i></span>Registration</a></li><li><a href="#user-login-post"><span class="badge post"><i class="fa fa-plus"></i></span>Login</a></li><li><a href="#refreshing-jwt-token-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Refresh Token</a></li><li><a href="#user-details-view-post"><span class="badge post"><i class="fa fa-plus"></i></span>User Profile Featch</a></li><li><a href="#user-logout-post"><span class="badge post"><i class="fa fa-plus"></i></span>Logout</a></li><li><a href="#reset-mail-sending-post"><span class="badge post"><i class="fa fa-plus"></i></span>Reset Password Link in Mail</a></li><li><a href="#password-reset-post"><span class="badge post"><i class="fa fa-plus"></i></span>Reset Password</a></li><li><a href="#kyc-registration-of-parent-post"><span class="badge post"><i class="fa fa-plus"></i></span>KYC Registration</a></li><li><a href="#adding-children-post"><span class="badge post"><i class="fa fa-plus"></i></span>parent Add Child</a></li><li><a href="#child-transaction-check-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Child-Transactions</a></li><li><a href="#parent-check-childuser-details-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>ChildUser Profile</a></li><li><a href="#parentuser-update-details-put"><span class="badge put"><i class="fa fa-pencil"></i></span>ParentUser update</a></li><li><a href="#new-admin-user-registration-post"><span class="badge post"><i class="fa fa-plus"></i></span>Admin Registration</a></li><li><a href="#parentuser-approve-post"><span class="badge post"><i class="fa fa-plus"></i></span>ParentUser approval</a></li><li><a href="#parentuser-reject-post"><span class="badge post"><i class="fa fa-plus"></i></span>ParentUser Reject</a></li><li><a href="#parentuser-requests-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Request-notification</a></li><li><a href="#childuser-approve-post"><span class="badge post"><i class="fa fa-plus"></i></span>ChildUser approval</a></li><li><a href="#childuser-reject-post"><span class="badge post"><i class="fa fa-plus"></i></span>ChildUser Reject</a></li><li><a href="#childuser-requests-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Request-notification</a></li><li><a href="#all-parentuser-details-view-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>ParentUser Profile Featch</a></li><li><a href="#all-childuser-details-view-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>ChildUser Profile Featch</a></li><li><a href="#all-cards-details-view-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Cards Profile Featch</a></li><li><a href="#all-transactions-details-view-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Transaction Profile Featch</a></li><li><a href="#all-refunds-details-view-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Refunds Profile Featch</a></li><li><a href="#all-vendors-details-view-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Vendors Profile Featch</a></li><li><a href="#admin-user-details-update-put"><span class="badge put"><i class="fa fa-pencil"></i></span>Admin Update</a></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="localhost:8000">localhost:8000</a></p></nav><div class="content"><header><h1 id="top">SECURE</h1></header><p>Virtual Secures are similar to the regular payment card that you can carry around but it will have information about users’ balances that they have been deposited earlier in their Secures. You just need to deposit it with cash and when you run out of balance, YOU ARE GOOD TO GO. For people who don’t have any bank accounts and for teenagers too, a Secure can be of great use. Secures can be used online. In case you make payments on a dodgy website or if there is any probability of fraudulent behavior or cybercrimes with your card, your damage will be limited as only the money you have loaded in your Secure will be on the verge of risk. If you assume any kind of threat with your card, you need to contact your Secure provider so that they can block your card.</p>
+<section id="" class="resource-group"><h2 class="group-heading">Resource Group <a href="#" class="permalink">&para;</a></h2><div id="new-user-registration" class="resource"><h3 class="resource-heading">New User Registration <a href="#new-user-registration" class="permalink">&nbsp;&para;</a></h3><div id="new-user-registration-post" class="action post"><h4 class="action-heading"><div class="name">Registration</div><a href="#new-user-registration-post" class="method post">POST</a><code class="uri">/api/auth/registration</code></h4><p>Here user will register useing his name,e-mail and password for the application</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/auth/registration</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json,</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+               {
+
+                <span class="hljs-string">"name"</span> : <span class="hljs-string">"gurukiran"</span>
+                <span class="hljs-string">"email"</span>: <span class="hljs-string">"gurukiran@gmail.com"</span>
+                <span class="hljs-string">"password"</span>: <span class="hljs-string">"********"</span>
+                <span class="hljs-string">"password_confirmation"</span> : <span class="hljs-string">"********"</span>
+               }
+               ]
+
+  If <span class="hljs-built_in">JSON</span> details correct <span class="hljs-keyword">with</span> then user will be registered ....
+
+  {
+<span class="hljs-string">"status"</span>: <span class="hljs-literal">true</span>,
+<span class="hljs-string">"message"</span>: <span class="hljs-string">"User successfully registered"</span>,
+   <span class="hljs-string">"user"</span>: {
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"gurukiran"</span>,
+    <span class="hljs-string">"email"</span>: <span class="hljs-string">"gurukiran@gmail.com"</span>,
+    <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-03-29T09:00:31.000000Z"</span>,
+    <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-03-29T09:00:31.000000Z"</span>,
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">748663707473510401</span>
+}
+
+  HEADER:Content-Type &amp; TYPE
+{</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="user-login" class="resource"><h3 class="resource-heading">User Login <a href="#user-login" class="permalink">&nbsp;&para;</a></h3><div id="user-login-post" class="action post"><h4 class="action-heading"><div class="name">Login</div><a href="#user-login-post" class="method post">POST</a><code class="uri">/api/auth/login</code></h4><p>Here user will login useing his e-mail and password</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/auth/login</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+               {
+
+                "<span class="hljs-attribute">email</span>":<span class="hljs-value"><span class="hljs-string">"gurukiran@gmail.com"</span></span>,
+                "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"********"</span>
+
+               </span>}
+               ]
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are correct <span class="hljs-keyword">with</span> then user will be logedin and access token will be generated.
+
+  {
+<span class="hljs-string">"access_token"</span>: <span class="hljs-string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4"</span>,
+<span class="hljs-string">"token_type"</span>: <span class="hljs-string">"bearer"</span>,
+<span class="hljs-string">"expires_in"</span>: <span class="hljs-number">3600</span>,
+<span class="hljs-string">"user"</span>: {
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">748663707473510401</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"gurukiran"</span>,
+    <span class="hljs-string">"email"</span>: <span class="hljs-string">"gurukiran@gmail.com"</span>,
+    <span class="hljs-string">"email_verified_at"</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-03-29T09:00:31.000000Z"</span>,
+    <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-03-29T09:00:31.000000Z"</span>
+}
+{
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are wrong then he is an unauthorised user
+
+  {
+ <span class="hljs-string">"error"</span>: <span class="hljs-string">"Unauthorized"</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="refreshing-jwt-token" class="resource"><h3 class="resource-heading">Refreshing JWT Token <a href="#refreshing-jwt-token" class="permalink">&nbsp;&para;</a></h3><div id="refreshing-jwt-token-get" class="action get"><h4 class="action-heading"><div class="name">Refresh Token</div><a href="#refreshing-jwt-token-get" class="method get">GET</a><code class="uri">/api/auth/refresh</code></h4><p>Here JWT Tokens which are assigned to user will be refreshed and new JWT Token will be assigned to them</p>
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/auth/refresh</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json"</span><br><span class="hljs-attribute">Authenticate</span>: <span class="hljs-string">"bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4"</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then that will be changed to <span class="hljs-keyword">new</span> one
+            
+            
+
+        {
+
+          <span class="hljs-string">"access_token"</span>: <span class="hljs-string">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9yZWZyZXNoIiwiaWF0IjoxNjQ4NTQ5NzMxLCJleHAiOjE2NDg1NTMzNDgsIm5iZiI6MTY0ODU0OTc0OCwianRpIjoiUDdXaHFhTXRYaUNpeElsTyIsInN1YiI6NzQ4NjYzNzA3NDczNTEwNDAxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.x42jqutzBhtjmAlbITQ4y6x_Z0L1XmCT-MNhvjwFU2g"</span>,
+            <span class="hljs-string">"token_type"</span>: <span class="hljs-string">"bearer"</span>,
+            <span class="hljs-string">"expires_in"</span>: <span class="hljs-number">3600</span>,
+            <span class="hljs-string">"user"</span>: {
+                <span class="hljs-string">"id"</span>: <span class="hljs-number">748663707473510401</span>,
+                <span class="hljs-string">"name"</span>: <span class="hljs-string">"gurukiran"</span>,
+                <span class="hljs-string">"email"</span>: <span class="hljs-string">"gurukiran@gmail.com"</span>,
+                <span class="hljs-string">"email_verified_at"</span>: <span class="hljs-literal">null</span>,
+                <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-03-29T09:00:31.000000Z"</span>,
+                <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-03-29T09:00:31.000000Z"</span>
+                    }</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json,</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authenticate</span>: <span class="hljs-string">"bearer eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If it is not present 
+            
+                
+
+         {
+             <span class="hljs-string">"message"</span>: <span class="hljs-string">"Unauthenticated."</span>
+        }</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="user-details-view" class="resource"><h3 class="resource-heading">User Details View <a href="#user-details-view" class="permalink">&nbsp;&para;</a></h3><div id="user-details-view-post" class="action post"><h4 class="action-heading"><div class="name">User Profile Featch</div><a href="#user-details-view-post" class="method post">POST</a><code class="uri">/api/auth/user-profile</code></h4><p>This API featches the account details of user with help of JWT Token of the user.</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/auth/user-profile</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">Authenticate</span>: <span class="hljs-string">"bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then user details will be featched.
+     {
+
+      <span class="hljs-string">"id"</span>: <span class="hljs-number">748685973175861249</span>,
+     <span class="hljs-string">"name"</span>: <span class="hljs-string">"gurukiran"</span>,
+    <span class="hljs-string">"email"</span>: <span class="hljs-string">"gurukiran@gmail.com"</span>,
+    <span class="hljs-string">"email_verified_at"</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-03-29T10:53:46.000000Z"</span>,
+    <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-03-29T10:53:46.000000Z"</span>
+
+                }</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">Authenticate</span>: <span class="hljs-string">"bearer J0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If it is not present 
+            
+                
+
+         {
+             <span class="hljs-string">"message"</span>: <span class="hljs-string">"Unauthenticated."</span>
+        }</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="user-logout" class="resource"><h3 class="resource-heading">User Logout <a href="#user-logout" class="permalink">&nbsp;&para;</a></h3><div id="user-logout-post" class="action post"><h4 class="action-heading"><div class="name">Logout</div><a href="#user-logout-post" class="method post">POST</a><code class="uri">/api/auth/logout</code></h4><p>Here user will be logged out with help of this API request</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/auth/logout</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">Authenticate</span>: <span class="hljs-string">"bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then user details will be featched.
+     {
+
+      <span class="hljs-string">"message"</span>: <span class="hljs-string">"User successfully signed out"</span>
+
+                }</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">Authenticate</span>: <span class="hljs-string">"bearer J0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If it is not present 
+            
+                
+
+         {
+             "message": "Unauthenticated."
+        }
+
+FORMAT: 1A
+HOST: HOST:/127.0.0.1:8000</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="reset-mail-sending" class="resource"><h3 class="resource-heading">Reset Mail Sending <a href="#reset-mail-sending" class="permalink">&nbsp;&para;</a></h3><div id="reset-mail-sending-post" class="action post"><h4 class="action-heading"><div class="name">Reset Password Link in Mail</div><a href="#reset-mail-sending-post" class="method post">POST</a><code class="uri">/api/auth/sendPasswordResetLink</code></h4><p>Here user will get request to his registered mail account to reset his account password.</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/auth/sendPasswordResetLink</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><div class="description"><p>[
+{
+<a href="mailto:%22email%22:%22gurukiran8861110488@gmail.com">“email”:&quot;gurukiran8861110488@gmail.com</a>&quot;
+}
+]</p>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If email is present <span class="hljs-keyword">in</span> database then mail will be sent
+     {
+
+      <span class="hljs-string">"data"</span>: <span class="hljs-string">"Reset Email is send successfully, please check your inbox."</span>
+
+                }</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If email it is not present <span class="hljs-keyword">in</span> the database
+            
+                
+
+         {
+             <span class="hljs-string">"message"</span>: <span class="hljs-string">"email not found in database"</span>
+        }</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="password-reset" class="resource"><h3 class="resource-heading">Password Reset <a href="#password-reset" class="permalink">&nbsp;&para;</a></h3><div id="password-reset-post" class="action post"><h4 class="action-heading"><div class="name">Reset Password</div><a href="#password-reset-post" class="method post">POST</a><code class="uri">/api/auth/resetPassword</code></h4><p>In this API password of user will be reset and new passwor will be added in that place.</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/auth/resetPassword</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+               {
+
+                "<span class="hljs-attribute">resetToken</span>" : <span class="hljs-value">nk3XWytDJD99pQ0X6kZQueJIn9Craww0eMRwVn8a
+                <span class="hljs-string">"email"</span>:<span class="hljs-string">"gurukiran8861110488@gmail.com"</span></span>,
+                "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"********"</span>
+                <span class="hljs-string">"password_confirmation"</span>:<span class="hljs-string">"********"</span>
+
+               </span>}
+               ]
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If credentials are is correct then that account will be updated <span class="hljs-keyword">with</span> <span class="hljs-keyword">new</span> password
+
+  {
+     <span class="hljs-string">"data"</span>: <span class="hljs-string">"Password has been updated."</span>
+   }
+{
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>442</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are wrong then 
+
+  {
+      <span class="hljs-string">"error"</span>: <span class="hljs-string">"Either your email or token is wrong."</span>
+}
+FORMAT: <span class="hljs-number">1</span>A
+HOST: localhost:<span class="hljs-number">8000</span></code></pre><div style="height: 1px;"></div></div></div></div></div><div id="kyc-registration-of-parent" class="resource"><h3 class="resource-heading">KYC Registration of Parent <a href="#kyc-registration-of-parent" class="permalink">&nbsp;&para;</a></h3><div id="kyc-registration-of-parent-post" class="action post"><h4 class="action-heading"><div class="name">KYC Registration</div><a href="#kyc-registration-of-parent-post" class="method post">POST</a><code class="uri">/api/parent/save</code></h4><p>Here ParentUser will register using his name,e-mail,phoen_number,Address,pan_card,gender and password for the application</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/parent/save</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json,</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+               {
+
+                     <span class="hljs-string">"name"</span>:<span class="hljs-string">"divya"</span>,
+                    <span class="hljs-string">"email"</span>:<span class="hljs-string">"divya123@mpokket.com"</span>,
+                    <span class="hljs-string">"phone_number"</span>:<span class="hljs-string">"997098929837"</span>,
+                    <span class="hljs-string">"address"</span>:<span class="hljs-string">"91springboard,mgroad,bangalore"</span>,
+                    <span class="hljs-string">"pan_card"</span>:<span class="hljs-string">"BDASJ4831C"</span>,
+                    <span class="hljs-string">"gender"</span>:<span class="hljs-string">"F"</span>,
+                    <span class="hljs-string">"password"</span>:<span class="hljs-string">"Divya123"</span>                                                                                           
+
+               }
+               ]
+
+  If <span class="hljs-built_in">JSON</span> details correct <span class="hljs-keyword">with</span> then ParentUser will be registered ....
+
+  {
+   <span class="hljs-string">"name"</span>: <span class="hljs-string">"divya"</span>,
+<span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"997098929837"</span>,
+<span class="hljs-string">"address"</span>: <span class="hljs-string">"91springboard,mgroad,bangalore"</span>,
+<span class="hljs-string">"pan_card"</span>: <span class="hljs-string">"BDASJ4831C"</span>,
+<span class="hljs-string">"email"</span>: <span class="hljs-string">"divya123@mpokket.com"</span>,
+<span class="hljs-string">"gender"</span>: <span class="hljs-string">"F"</span>,
+<span class="hljs-string">"is_approved"</span>: <span class="hljs-string">"not-approved"</span>,
+<span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-03T14:46:10.000000Z"</span>,
+<span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-03T14:46:10.000000Z"</span>,
+<span class="hljs-string">"id"</span>: <span class="hljs-number">758640708654661633</span>
+}
+
+  HEADER:Content-Type &amp; TYPE
+{</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="adding-children" class="resource"><h3 class="resource-heading">Adding children <a href="#adding-children" class="permalink">&nbsp;&para;</a></h3><div id="adding-children-post" class="action post"><h4 class="action-heading"><div class="name">parent Add Child</div><a href="#adding-children-post" class="method post">POST</a><code class="uri">/api/parent/child</code></h4><p>Here user will ADD child using his first_name,last_name,dob,e-mail,phone_number,gender,monthly_limit</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/parent/child</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+               {
+
+                first_name:kishore
+                last_name:sai
+                dob:1999/04/18
+                email:kishore123@gmail.com
+                phone_number:998765862123
+                gender:M
+                monthly_limit:5000
+                is_approved:not_approved
+               }
+               ]
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are correct <span class="hljs-keyword">with</span> then user will be logedin and access token will be generated.
+
+  {
+ <span class="hljs-string">"first_name"</span>: <span class="hljs-string">"kishore"</span>,
+<span class="hljs-string">"last_name"</span>: <span class="hljs-string">"sai"</span>,
+<span class="hljs-string">"dob"</span>: <span class="hljs-string">"1999/04/18"</span>,
+<span class="hljs-string">"email"</span>: <span class="hljs-string">"kishore123@gmail.com"</span>,
+<span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"998765862123"</span>,
+<span class="hljs-string">"gender"</span>: <span class="hljs-string">"M"</span>,
+<span class="hljs-string">"monthly_limit"</span>: <span class="hljs-string">"5000"</span>,
+<span class="hljs-string">"is_approved"</span>: <span class="hljs-string">"not-approved"</span>,
+<span class="hljs-string">"parent_id"</span>: <span class="hljs-number">758340020035944449</span>,
+<span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-03T14:52:46.000000Z"</span>,
+<span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-03T14:52:46.000000Z"</span>,
+<span class="hljs-string">"id"</span>: <span class="hljs-number">758642003432046593</span>
+}
+{
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>422</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are wrong then he is an unauthorised user
+
+{
+<span class="hljs-string">"message"</span>: <span class="hljs-string">"The given data was invalid."</span>,
+<span class="hljs-string">"errors"</span>: {
+    <span class="hljs-string">"phone_number"</span>: [
+        <span class="hljs-string">"The phone number must be between 12 and 12 digits."</span>
+    ]
+}
+}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="child-transaction-check" class="resource"><h3 class="resource-heading">Child Transaction Check <a href="#child-transaction-check" class="permalink">&nbsp;&para;</a></h3><div id="child-transaction-check-get" class="action get"><h4 class="action-heading"><div class="name">Child-Transactions</div><a href="#child-transaction-check-get" class="method get">GET</a><code class="uri">/api/parents/transaction/child/</code></h4><p>Here JWT Tokens which are assigned to user will be child transaction check.</p>
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/parents/transaction/child/</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json"</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>url:<span class="hljs-regexp">/api/</span>parents/transaction/child/{first_name}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then that will be changed to <span class="hljs-keyword">new</span> one
+            
+            
+          
+
+{
+    <span class="hljs-string">"vendor_name"</span>: <span class="hljs-string">"Vicenta"</span>,
+    <span class="hljs-string">"transaction_amount"</span>: <span class="hljs-number">2280</span>,
+    <span class="hljs-string">"transaction_date"</span>: <span class="hljs-string">"1980-02-29 00:00:00"</span>,
+    <span class="hljs-string">"transaction_status"</span>: <span class="hljs-literal">true</span>
+},
+{
+    <span class="hljs-string">"vendor_name"</span>: <span class="hljs-string">"Constance"</span>,
+    <span class="hljs-string">"transaction_amount"</span>: <span class="hljs-number">4973</span>,
+    <span class="hljs-string">"transaction_date"</span>: <span class="hljs-string">"1990-01-11 00:00:00"</span>,
+    <span class="hljs-string">"transaction_status"</span>: <span class="hljs-literal">false</span>
+},
+{
+    <span class="hljs-string">"vendor_name"</span>: <span class="hljs-string">"Milton"</span>,
+    <span class="hljs-string">"transaction_amount"</span>: <span class="hljs-number">3431</span>,
+    <span class="hljs-string">"transaction_date"</span>: <span class="hljs-string">"2012-11-24 00:00:00"</span>,
+    <span class="hljs-string">"transaction_status"</span>: <span class="hljs-literal">true</span>
+},
+{
+    <span class="hljs-string">"vendor_name"</span>: <span class="hljs-string">"Aaron"</span>,
+    <span class="hljs-string">"transaction_amount"</span>: <span class="hljs-number">4704</span>,
+    <span class="hljs-string">"transaction_date"</span>: <span class="hljs-string">"1986-09-02 00:00:00"</span>,
+    <span class="hljs-string">"transaction_status"</span>: <span class="hljs-literal">false</span>
+},
+{
+    <span class="hljs-string">"vendor_name"</span>: <span class="hljs-string">"Vivien"</span>,
+    <span class="hljs-string">"transaction_amount"</span>: <span class="hljs-number">4369</span>,
+    <span class="hljs-string">"transaction_date"</span>: <span class="hljs-string">"1976-12-20 00:00:00"</span>,
+    <span class="hljs-string">"transaction_status"</span>: <span class="hljs-literal">false</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json,</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If it is not present 
+            
+                
+
+         {
+             <span class="hljs-string">"message"</span>: <span class="hljs-string">"Unauthenticated."</span>
+        }</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="parent-check-childuser-details" class="resource"><h3 class="resource-heading">Parent Check ChildUser Details <a href="#parent-check-childuser-details" class="permalink">&nbsp;&para;</a></h3><div id="parent-check-childuser-details-get" class="action get"><h4 class="action-heading"><div class="name">ChildUser Profile</div><a href="#parent-check-childuser-details-get" class="method get">GET</a><code class="uri">/api/parents/child/</code></h4><p>This API featches the account details of childuser with help of JWT Token of the user.</p>
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/parents/child/</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">Authenticate</span>: <span class="hljs-string">"bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0ODU0NTg4NSwiZXhwIjoxNjQ4NTQ5NDg1LCJuYmYiOjE2NDg1NDU4ODUsImp0aSI6IlZhUXUxRjBKSUlBbFlpNHEiLCJzdWIiOjc0ODY2MzcwNzQ3MzUxMDQwMSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.zfLMEfpv-XMWtDSnhqFU5NuSumNimrNNHzRaT9Wy_r4",</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then childuser details will be featched.
+                 {
+        <span class="hljs-string">"id"</span>: <span class="hljs-number">758348070933889025</span>,
+        <span class="hljs-string">"parent_id"</span>: <span class="hljs-number">758340715997822977</span>,
+        <span class="hljs-string">"first_name"</span>: <span class="hljs-string">"kishore"</span>,
+        <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"sai"</span>,
+        <span class="hljs-string">"dob"</span>: <span class="hljs-string">"1999-04-18"</span>,
+        <span class="hljs-string">"email"</span>: <span class="hljs-string">"kishore123@gmail.com"</span>,
+        <span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"998765862123"</span>,
+        <span class="hljs-string">"gender"</span>: <span class="hljs-string">"M"</span>,
+        <span class="hljs-string">"monthly_limit"</span>: <span class="hljs-number">5000</span>,
+        <span class="hljs-string">"is_approved"</span>: <span class="hljs-string">"not-approved"</span>,
+        <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T13:57:45.000000Z"</span>,
+        <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02T13:57:45.000000Z"</span>
+    }</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If it is not present 
+            
+                
+
+         {
+             <span class="hljs-string">"message"</span>: <span class="hljs-string">"Unauthenticated."</span>
+        }</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="parentuser-update-details" class="resource"><h3 class="resource-heading">ParentUser Update Details <a href="#parentuser-update-details" class="permalink">&nbsp;&para;</a></h3><div id="parentuser-update-details-put" class="action put"><h4 class="action-heading"><div class="name">ParentUser update</div><a href="#parentuser-update-details-put" class="method put">PUT</a><code class="uri">/api/parent/update/</code></h4><p>Here ParentUser will Update using his name,e-mail,phoen_number,Address,pan_card,gender and password for the application</p>
+<h4>Example URI</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/parent/update/</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>[
+               {
+
+                     <span class="hljs-string">"name"</span>:<span class="hljs-string">"shiva"</span>,
+                    <span class="hljs-string">"email"</span>:<span class="hljs-string">"shiva123@mpokket.com"</span>,
+                    <span class="hljs-string">"phone_number"</span>:<span class="hljs-string">"987654321734"</span>,
+                    <span class="hljs-string">"address"</span>:<span class="hljs-string">"91springboard,mgroad,bangalore"</span>,
+                    <span class="hljs-string">"pan_card"</span>:<span class="hljs-string">"CFVPH4131C"</span>,
+                    <span class="hljs-string">"gender"</span>:<span class="hljs-string">"M"</span>,
+                    <span class="hljs-string">"aadhar"</span>:<span class="hljs-string">"1234567890&amp;7"</span>,
+                    <span class="hljs-string">"password"</span>:<span class="hljs-string">"Shiva7"</span>                                                                                          
+
+               }
+               ]
+
+  If <span class="hljs-built_in">JSON</span> details correct <span class="hljs-keyword">with</span> then ParentUser will be registered ....
+
+  {
+   <span class="hljs-string">"id"</span>: <span class="hljs-number">758340006781779969</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"shiva"</span>,
+    <span class="hljs-string">"email"</span>: <span class="hljs-string">"shiva123@mpokket.com"</span>,
+    <span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"987654321734"</span>,
+    <span class="hljs-string">"address"</span>: <span class="hljs-string">"91springboard,mgroad,bangalore"</span>,
+    <span class="hljs-string">"pan_card"</span>: <span class="hljs-string">"CFVPH4131C"</span>,
+    <span class="hljs-string">"gender"</span>: <span class="hljs-string">"M"</span>,
+    <span class="hljs-string">"is_approved"</span>: <span class="hljs-string">"approved"</span>,
+    <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T13:16:43.000000Z"</span>,
+    <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-03T16:50:01.000000Z"</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>FORMAT: 1A
+HOST: localhost:8000</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="new-admin-user-registration" class="resource"><h3 class="resource-heading">New Admin User Registration <a href="#new-admin-user-registration" class="permalink">&nbsp;&para;</a></h3><div id="new-admin-user-registration-post" class="action post"><h4 class="action-heading"><div class="name">Admin Registration</div><a href="#new-admin-user-registration-post" class="method post">POST</a><code class="uri">/api/admin/save</code></h4><p>Here Admin will register useing his name,e-mail,phone_number,address,dob,joining_date and password for the application</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/admin/save</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json,</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+               {
+
+                name:madhu
+                email:madhu123@gmail.com
+                password:<span class="hljs-number">123456</span>
+                phone_number:<span class="hljs-number">987654321019</span>
+                address:bangalore
+                dob:<span class="hljs-number">1999</span>-<span class="hljs-number">08</span>-<span class="hljs-number">06</span>
+                joined_date:<span class="hljs-number">2021</span>-<span class="hljs-number">12</span>-<span class="hljs-number">07</span>
+               }
+               ]
+
+  If <span class="hljs-built_in">JSON</span> details correct <span class="hljs-keyword">with</span> then Admin will be registered ....
+
+  {
+ <span class="hljs-string">"name"</span>: <span class="hljs-string">"madhu"</span>,
+<span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"987654321019"</span>,
+<span class="hljs-string">"address"</span>: <span class="hljs-string">"bangalore"</span>,
+<span class="hljs-string">"email"</span>: <span class="hljs-string">"madhu123@gmail.com"</span>,
+<span class="hljs-string">"password"</span>: <span class="hljs-string">"123456"</span>,
+<span class="hljs-string">"dob"</span>: <span class="hljs-string">"1999-08-06"</span>,
+<span class="hljs-string">"joined_date"</span>: <span class="hljs-string">"2021-12-07"</span>,
+<span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-03T17:03:37.000000Z"</span>,
+<span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-03T17:03:37.000000Z"</span>,
+<span class="hljs-string">"id"</span>: <span class="hljs-number">758667730918080513</span>
+}
+
+  HEADER:Content-Type &amp; TYPE
+{</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="parentuser-approve" class="resource"><h3 class="resource-heading">ParentUser Approve <a href="#parentuser-approve" class="permalink">&nbsp;&para;</a></h3><div id="parentuser-approve-post" class="action post"><h4 class="action-heading"><div class="name">ParentUser approval</div><a href="#parentuser-approve-post" class="method post">POST</a><code class="uri">/api/admin/approve</code></h4><p>Here parentuser will approve using his user_id and approvad.</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/admin/approve</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+               {
+
+                user_id:758340006781779969
+                approved:approved
+
+               }
+               ]
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are correct <span class="hljs-keyword">with</span> then admin will be approved.
+
+  {
+<span class="hljs-string">"Request Approved"</span>
+}<span class="hljs-keyword">else</span>
+{
+<span class="hljs-string">"User is already Approved"</span>
+}
+{
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are wrong then he is an unauthorised user
+
+  {
+ <span class="hljs-string">"error"</span>: <span class="hljs-string">"Unauthorized"</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="parentuser-reject" class="resource"><h3 class="resource-heading">ParentUser Reject <a href="#parentuser-reject" class="permalink">&nbsp;&para;</a></h3><div id="parentuser-reject-post" class="action post"><h4 class="action-heading"><div class="name">ParentUser Reject</div><a href="#parentuser-reject-post" class="method post">POST</a><code class="uri">/api/admin/reject</code></h4><p>Here parentuser will reject using his user_id and approve.</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/admin/reject</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+               {
+
+                user_id:758340006781779969
+                approve:not_approved
+
+               }
+               ]
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are correct <span class="hljs-keyword">with</span> then admin will be approved.
+
+  {
+<span class="hljs-string">"User Temp not approved"</span>
+}<span class="hljs-keyword">else</span>
+{
+<span class="hljs-string">"Request pending"</span>
+}
+{
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are wrong then he is an unauthorised user
+
+  {
+ <span class="hljs-string">"error"</span>: <span class="hljs-string">"Unauthorized"</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="parentuser-requests" class="resource"><h3 class="resource-heading">Parentuser Requests <a href="#parentuser-requests" class="permalink">&nbsp;&para;</a></h3><div id="parentuser-requests-get" class="action get"><h4 class="action-heading"><div class="name">Request-notification</div><a href="#parentuser-requests-get" class="method get">GET</a><code class="uri">/api/admin/request-status</code></h4><p>Here which are assigned to parentuser will be request notification</p>
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/admin/request-status</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json"</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then that will be changed to <span class="hljs-keyword">new</span> one
+            
+                        
+
+                   {
+                <span class="hljs-string">"id"</span>: <span class="hljs-number">758340015824011265</span>,
+                <span class="hljs-string">"name"</span>: <span class="hljs-string">"Westley"</span>,
+                <span class="hljs-string">"email"</span>: <span class="hljs-string">"lgoldner@oconner.com"</span>,
+                <span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"1-786-434-7948"</span>,
+                <span class="hljs-string">"password"</span>: <span class="hljs-string">"$2y$10$6Tt332CPrcaxZoC2fNvKruZhYdwuG1SxGMJAzd5koVZuIgf/b44wG"</span>,
+                <span class="hljs-string">"address"</span>: <span class="hljs-string">"34612 Ritchie Burg Apt. 123\nBillfurt, OK 79331-0187"</span>,
+                <span class="hljs-string">"pan_card"</span>: <span class="hljs-string">"JAFIR2963(U"</span>,
+                <span class="hljs-string">"gender"</span>: <span class="hljs-string">"Male"</span>,
+                <span class="hljs-string">"is_approved"</span>: <span class="hljs-string">"not_approved"</span>,
+                <span class="hljs-string">"remember_token"</span>: <span class="hljs-literal">null</span>,
+                <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02 13:16:46"</span>,
+                <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02 13:16:46"</span>
+            },
+            {
+                <span class="hljs-string">"id"</span>: <span class="hljs-number">758340085716090881</span>,
+                <span class="hljs-string">"name"</span>: <span class="hljs-string">"Selina"</span>,
+                <span class="hljs-string">"email"</span>: <span class="hljs-string">"hodkiewicz.martin@mcdermott.com"</span>,
+                <span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"(463) 842-2514"</span>,
+                <span class="hljs-string">"password"</span>: <span class="hljs-string">"$2y$10$nDB.tbPHHBXEvjMBV03xuukc.jY2RetV1CIdo3Xl5KnwVQIfnLTmG"</span>,
+                <span class="hljs-string">"address"</span>: <span class="hljs-string">"1795 Krystel Common Apt. 325\nVaughnberg, MI 07351"</span>,
+                <span class="hljs-string">"pan_card"</span>: <span class="hljs-string">"CCAGI1917(B"</span>,
+                <span class="hljs-string">"gender"</span>: <span class="hljs-string">"Male"</span>,
+                <span class="hljs-string">"is_approved"</span>: <span class="hljs-string">"not_approved"</span>,
+                <span class="hljs-string">"remember_token"</span>: <span class="hljs-literal">null</span>,
+                <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02 13:17:08"</span>,
+                <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02 13:17:08"</span>
+            }</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json,</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div></div></div><div id="childuser-approve" class="resource"><h3 class="resource-heading">ChildUser Approve <a href="#childuser-approve" class="permalink">&nbsp;&para;</a></h3><div id="childuser-approve-post" class="action post"><h4 class="action-heading"><div class="name">ChildUser approval</div><a href="#childuser-approve-post" class="method post">POST</a><code class="uri">/api/admin/childapprove</code></h4><p>Here childuser will approve using his child_id and approvad.</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/admin/childapprove</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+               {
+
+                child_id:758353314125643777
+                approved:approved
+
+               }
+               ]
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are correct <span class="hljs-keyword">with</span> then admin will be approved.
+
+  {
+<span class="hljs-string">"Request Approved"</span>
+}<span class="hljs-keyword">else</span>
+{
+<span class="hljs-string">"User is already Approved"</span>
+}
+{
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are wrong then he is an unauthorised user
+
+  {
+ <span class="hljs-string">"error"</span>: <span class="hljs-string">"Unauthorized"</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="childuser-reject" class="resource"><h3 class="resource-heading">ChildUser Reject <a href="#childuser-reject" class="permalink">&nbsp;&para;</a></h3><div id="childuser-reject-post" class="action post"><h4 class="action-heading"><div class="name">ChildUser Reject</div><a href="#childuser-reject-post" class="method post">POST</a><code class="uri">/api/admin/childreject</code></h4><p>Here childuser will reject using his child_id and approve.</p>
+<h4>Example URI</h4><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/admin/childreject</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+               {
+
+                user_id:758353314125643777
+                approve:not_approved
+
+               }
+               ]
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are correct <span class="hljs-keyword">with</span> then admin will be approved.
+
+  {
+<span class="hljs-string">"User Temp not approved"</span>
+}<span class="hljs-keyword">else</span>
+{
+<span class="hljs-string">"Request pending"</span>
+}
+{
+{</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If Credentials are wrong then he is an unauthorised user
+
+  {
+ <span class="hljs-string">"error"</span>: <span class="hljs-string">"Unauthorized"</span>
+}</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="childuser-requests" class="resource"><h3 class="resource-heading">Childuser Requests <a href="#childuser-requests" class="permalink">&nbsp;&para;</a></h3><div id="childuser-requests-get" class="action get"><h4 class="action-heading"><div class="name">Request-notification</div><a href="#childuser-requests-get" class="method get">GET</a><code class="uri">/api/admin/childrequest-status</code></h4><p>Here which are assigned to childuser will be request notification</p>
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/admin/childrequest-status</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json"</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then that will be changed to <span class="hljs-keyword">new</span> one
+            
+                        
+
+                                {
+                <span class="hljs-string">"id"</span>: <span class="hljs-number">758340040205500417</span>,
+                <span class="hljs-string">"parent_id"</span>: <span class="hljs-number">758340013102071809</span>,
+                <span class="hljs-string">"first_name"</span>: <span class="hljs-string">"Tre"</span>,
+                <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Weimann"</span>,
+                <span class="hljs-string">"dob"</span>: <span class="hljs-string">"2019-04-13"</span>,
+                <span class="hljs-string">"email"</span>: <span class="hljs-string">"reyes90@mayer.biz"</span>,
+                <span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"914.333.5535"</span>,
+                <span class="hljs-string">"gender"</span>: <span class="hljs-string">"Female"</span>,
+                <span class="hljs-string">"monthly_limit"</span>: <span class="hljs-number">3000</span>,
+                <span class="hljs-string">"is_approved"</span>: <span class="hljs-string">"not_approved"</span>,
+                <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02 13:16:54"</span>,
+                <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02 13:16:54"</span>
+            },
+            {
+                <span class="hljs-string">"id"</span>: <span class="hljs-number">758340051528384513</span>,
+                <span class="hljs-string">"parent_id"</span>: <span class="hljs-number">758340024838291457</span>,
+                <span class="hljs-string">"first_name"</span>: <span class="hljs-string">"Marquise"</span>,
+                <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Rice"</span>,
+                <span class="hljs-string">"dob"</span>: <span class="hljs-string">"1989-01-10"</span>,
+                <span class="hljs-string">"email"</span>: <span class="hljs-string">"alysson.langosh@casper.com"</span>,
+                <span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"707.529.7375"</span>,
+                <span class="hljs-string">"gender"</span>: <span class="hljs-string">"Male"</span>,
+                <span class="hljs-string">"monthly_limit"</span>: <span class="hljs-number">4000</span>,
+                <span class="hljs-string">"is_approved"</span>: <span class="hljs-string">"not_approved"</span>,
+                <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02 13:16:57"</span>,
+                <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02 13:16:57"</span>
+            }</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json,</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div></div></div><div id="all-parentuser-details-view" class="resource"><h3 class="resource-heading">All ParentUser Details View <a href="#all-parentuser-details-view" class="permalink">&nbsp;&para;</a></h3><div id="all-parentuser-details-view-get" class="action get"><h4 class="action-heading"><div class="name">ParentUser Profile Featch</div><a href="#all-parentuser-details-view-get" class="method get">GET</a><code class="uri">/api/parents</code></h4><p>This API featches the All details of ParentUser with help of JWT Token of the parentuser.</p>
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/parents</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then parentuser details will be featched.
+  {
+<span class="hljs-string">"id"</span>: <span class="hljs-number">758340006781779969</span>,
+<span class="hljs-string">"name"</span>: <span class="hljs-string">"Dolly"</span>,
+<span class="hljs-string">"email"</span>: <span class="hljs-string">"hauck.joe@kassulke.org"</span>,
+<span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"(240) 493-1066"</span>,
+<span class="hljs-string">"address"</span>: <span class="hljs-string">"331 Giovani Landing\nWisozkhaven, MI 28072-2681"</span>,
+<span class="hljs-string">"pan_card"</span>: <span class="hljs-string">"EOWKG9879(F"</span>,
+<span class="hljs-string">"gender"</span>: <span class="hljs-string">"Male"</span>,
+<span class="hljs-string">"is_approved"</span>: <span class="hljs-string">"approved"</span>,
+<span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T13:16:43.000000Z"</span>,
+<span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02T13:16:43.000000Z"</span>
+},
+{
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">758340013102071809</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"Anastasia"</span>,
+    <span class="hljs-string">"email"</span>: <span class="hljs-string">"davis.maud@gmail.com"</span>,
+    <span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"929.218.2365"</span>,
+    <span class="hljs-string">"address"</span>: <span class="hljs-string">"54308 Beier Junctions\nMarquardtland, FL 11012"</span>,
+    <span class="hljs-string">"pan_card"</span>: <span class="hljs-string">"SVWZG3156X"</span>,
+    <span class="hljs-string">"gender"</span>: <span class="hljs-string">"Male"</span>,
+    <span class="hljs-string">"is_approved"</span>: <span class="hljs-string">"approved"</span>,
+    <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T13:16:45.000000Z"</span>,
+    <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02T13:16:45.000000Z"</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If it is not present 
+            
+                
+
+         {
+             <span class="hljs-string">"message"</span>: <span class="hljs-string">"Unauthenticated."</span>
+        }</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="all-childuser-details-view" class="resource"><h3 class="resource-heading">All ChildUser Details View <a href="#all-childuser-details-view" class="permalink">&nbsp;&para;</a></h3><div id="all-childuser-details-view-get" class="action get"><h4 class="action-heading"><div class="name">ChildUser Profile Featch</div><a href="#all-childuser-details-view-get" class="method get">GET</a><code class="uri">/api/childs</code></h4><p>This API featches the All details of ChildUser with help of JWT Token of the childuser.</p>
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/childs</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then childuser details will be featched.
+ {
+<span class="hljs-string">"id"</span>: <span class="hljs-number">758340040205500417</span>,
+<span class="hljs-string">"parent_id"</span>: <span class="hljs-number">758340013102071809</span>,
+<span class="hljs-string">"first_name"</span>: <span class="hljs-string">"Tre"</span>,
+<span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Weimann"</span>,
+<span class="hljs-string">"dob"</span>: <span class="hljs-string">"2019-04-13"</span>,
+<span class="hljs-string">"email"</span>: <span class="hljs-string">"reyes90@mayer.biz"</span>,
+<span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"914.333.5535"</span>,
+<span class="hljs-string">"gender"</span>: <span class="hljs-string">"Female"</span>,
+<span class="hljs-string">"monthly_limit"</span>: <span class="hljs-number">3000</span>,
+<span class="hljs-string">"is_approved"</span>: <span class="hljs-string">"not_approved"</span>,
+<span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T13:16:54.000000Z"</span>,
+<span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02T13:16:54.000000Z"</span>
+},
+{
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">758340044831227905</span>,
+    <span class="hljs-string">"parent_id"</span>: <span class="hljs-number">758340020035944449</span>,
+    <span class="hljs-string">"first_name"</span>: <span class="hljs-string">"Kaylie"</span>,
+    <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Macejkovic"</span>,
+    <span class="hljs-string">"dob"</span>: <span class="hljs-string">"2017-02-20"</span>,
+    <span class="hljs-string">"email"</span>: <span class="hljs-string">"goldner.graciela@friesen.net"</span>,
+    <span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"+18485000880"</span>,
+    <span class="hljs-string">"gender"</span>: <span class="hljs-string">"Male"</span>,
+    <span class="hljs-string">"monthly_limit"</span>: <span class="hljs-number">3000</span>,
+    <span class="hljs-string">"is_approved"</span>: <span class="hljs-string">"approved"</span>,
+    <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T13:16:55.000000Z"</span>,
+    <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02T13:16:55.000000Z"</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If it is not present 
+            
+                
+
+         {
+             <span class="hljs-string">"message"</span>: <span class="hljs-string">"Unauthenticated."</span>
+        }</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="all-cards-details-view" class="resource"><h3 class="resource-heading">All Cards Details View <a href="#all-cards-details-view" class="permalink">&nbsp;&para;</a></h3><div id="all-cards-details-view-get" class="action get"><h4 class="action-heading"><div class="name">Cards Profile Featch</div><a href="#all-cards-details-view-get" class="method get">GET</a><code class="uri">/api/cards</code></h4><p>This API featches the All details of Cards with help of JWT Token of the cards.</p>
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/cards</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then cards details will be featched.
+      {
+        <span class="hljs-string">"id"</span>: <span class="hljs-number">758340545855029249</span>,
+        <span class="hljs-string">"child_id"</span>: <span class="hljs-number">758340067374628865</span>,
+        <span class="hljs-string">"card_number"</span>: <span class="hljs-number">4556925166136620</span>,
+        <span class="hljs-string">"exp_date"</span>: <span class="hljs-string">"2022-10-26"</span>,
+        <span class="hljs-string">"cvv"</span>: <span class="hljs-number">650</span>,
+        <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T13:19:28.000000Z"</span>,
+        <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02T13:19:28.000000Z"</span>
+    },
+    {
+        <span class="hljs-string">"id"</span>: <span class="hljs-number">758340550233653249</span>,
+        <span class="hljs-string">"child_id"</span>: <span class="hljs-number">758340061228433409</span>,
+        <span class="hljs-string">"card_number"</span>: <span class="hljs-number">5423168573290445</span>,
+        <span class="hljs-string">"exp_date"</span>: <span class="hljs-string">"2023-03-25"</span>,
+        <span class="hljs-string">"cvv"</span>: <span class="hljs-number">429</span>,
+        <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T13:19:29.000000Z"</span>,
+        <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02T13:19:29.000000Z"</span>
+    }</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If it is not present 
+            
+                
+
+         {
+             <span class="hljs-string">"message"</span>: <span class="hljs-string">"Unauthenticated."</span>
+        }</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="all-transactions-details-view" class="resource"><h3 class="resource-heading">All Transactions Details View <a href="#all-transactions-details-view" class="permalink">&nbsp;&para;</a></h3><div id="all-transactions-details-view-get" class="action get"><h4 class="action-heading"><div class="name">Transaction Profile Featch</div><a href="#all-transactions-details-view-get" class="method get">GET</a><code class="uri">/api/transactions</code></h4><p>This API featches the All details of Transactions with help of JWT Token of the transactions.</p>
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/transactions</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then transactions details will be featched.
+ {
+<span class="hljs-string">"id"</span>: <span class="hljs-number">758341903651635201</span>,
+<span class="hljs-string">"card_number"</span>: <span class="hljs-number">5423168573290445</span>,
+<span class="hljs-string">"vendor_name"</span>: <span class="hljs-string">"Constance"</span>,
+<span class="hljs-string">"transaction_amount"</span>: <span class="hljs-number">2880</span>,
+<span class="hljs-string">"limit_balance"</span>: <span class="hljs-number">120</span>,
+<span class="hljs-string">"transaction_date"</span>: <span class="hljs-string">"2014-05-25 00:00:00"</span>,
+<span class="hljs-string">"transaction_status"</span>: <span class="hljs-literal">true</span>,
+<span class="hljs-string">"transaction_type"</span>: <span class="hljs-string">"Refund"</span>,
+<span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T13:26:22.000000Z"</span>,
+<span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02T13:26:22.000000Z"</span>
+},
+{
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">758341906831966209</span>,
+    <span class="hljs-string">"card_number"</span>: <span class="hljs-number">5423168573290445</span>,
+    <span class="hljs-string">"vendor_name"</span>: <span class="hljs-string">"Kaycee"</span>,
+    <span class="hljs-string">"transaction_amount"</span>: <span class="hljs-number">1502</span>,
+    <span class="hljs-string">"limit_balance"</span>: <span class="hljs-number">5000</span>,
+    <span class="hljs-string">"transaction_date"</span>: <span class="hljs-string">"2016-09-18 00:00:00"</span>,
+    <span class="hljs-string">"transaction_status"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">"transaction_type"</span>: <span class="hljs-string">"Credit"</span>,
+    <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T13:26:23.000000Z"</span>,
+    <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02T13:26:23.000000Z"</span>
+},
+{
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">758341976101421057</span>,
+    <span class="hljs-string">"card_number"</span>: <span class="hljs-number">4929243189209394</span>,
+    <span class="hljs-string">"vendor_name"</span>: <span class="hljs-string">"Vicenta"</span>,
+    <span class="hljs-string">"transaction_amount"</span>: <span class="hljs-number">2280</span>,
+    <span class="hljs-string">"limit_balance"</span>: <span class="hljs-number">2720</span>,
+    <span class="hljs-string">"transaction_date"</span>: <span class="hljs-string">"1980-02-29 00:00:00"</span>,
+    <span class="hljs-string">"transaction_status"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"transaction_type"</span>: <span class="hljs-string">"Credit"</span>,
+    <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T13:26:45.000000Z"</span>,
+    <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02T13:26:45.000000Z"</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If it is not present 
+            
+                
+
+         {
+             <span class="hljs-string">"message"</span>: <span class="hljs-string">"Unauthenticated."</span>
+        }</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="all-refunds-details-view" class="resource"><h3 class="resource-heading">All Refunds Details View <a href="#all-refunds-details-view" class="permalink">&nbsp;&para;</a></h3><div id="all-refunds-details-view-get" class="action get"><h4 class="action-heading"><div class="name">Refunds Profile Featch</div><a href="#all-refunds-details-view-get" class="method get">GET</a><code class="uri">/api/refunds</code></h4><p>This API featches the All details of Refunds with help of JWT Token of the refunds.</p>
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/refunds</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then refunds details will be featched.
+      {
+<span class="hljs-string">"id"</span>: <span class="hljs-number">758342472934326273</span>,
+<span class="hljs-string">"transaction_id"</span>: <span class="hljs-string">"758341984322355201"</span>,
+<span class="hljs-string">"refund_amount"</span>: <span class="hljs-number">4369</span>,
+<span class="hljs-string">"refund_status"</span>: <span class="hljs-literal">true</span>,
+<span class="hljs-string">"refund_date"</span>: <span class="hljs-string">"1977-06-08"</span>,
+<span class="hljs-string">"created_at"</span>: <span class="hljs-literal">null</span>,
+<span class="hljs-string">"updated_at"</span>: <span class="hljs-literal">null</span>
+},
+{
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">758342477502054401</span>,
+    <span class="hljs-string">"transaction_id"</span>: <span class="hljs-string">"758341978661912577"</span>,
+    <span class="hljs-string">"refund_amount"</span>: <span class="hljs-number">4973</span>,
+    <span class="hljs-string">"refund_status"</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-string">"refund_date"</span>: <span class="hljs-string">"2018-03-27"</span>,
+    <span class="hljs-string">"created_at"</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-string">"updated_at"</span>: <span class="hljs-literal">null</span>
+},
+{
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">758342479660810241</span>,
+    <span class="hljs-string">"transaction_id"</span>: <span class="hljs-string">"758342086905495553"</span>,
+    <span class="hljs-string">"refund_amount"</span>: <span class="hljs-number">2923</span>,
+    <span class="hljs-string">"refund_status"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">"refund_date"</span>: <span class="hljs-string">"2019-04-01"</span>,
+    <span class="hljs-string">"created_at"</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-string">"updated_at"</span>: <span class="hljs-literal">null</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If it is not present 
+            
+                
+
+         {
+             <span class="hljs-string">"message"</span>: <span class="hljs-string">"Unauthenticated."</span>
+        }</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="all-vendors-details-view" class="resource"><h3 class="resource-heading">All Vendors Details View <a href="#all-vendors-details-view" class="permalink">&nbsp;&para;</a></h3><div id="all-vendors-details-view-get" class="action get"><h4 class="action-heading"><div class="name">Vendors Profile Featch</div><a href="#all-vendors-details-view-get" class="method get">GET</a><code class="uri">/api/vendors</code></h4><p>This API featches the All details of Vendors with help of  JWT Token of the Vendors.</p>
+<h4>Example URI</h4><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/vendors</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>200</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If that token is present then transactions details will be featched.
+ {
+<span class="hljs-string">"id"</span>: <span class="hljs-number">758340820434157569</span>,
+<span class="hljs-string">"name"</span>: <span class="hljs-string">"Vicenta"</span>,
+<span class="hljs-string">"email"</span>: <span class="hljs-string">"kshlerin.isobel@hotmail.com"</span>,
+<span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"(281) 568-1799"</span>,
+<span class="hljs-string">"password"</span>: <span class="hljs-string">"&gt;a4Q1a@v^"</span>,
+<span class="hljs-string">"address"</span>: <span class="hljs-string">"2875 Klein Haven\nEast Fabian, OH 98583"</span>,
+<span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T13:20:52.000000Z"</span>,
+<span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02T13:20:52.000000Z"</span>
+},
+{
+    <span class="hljs-string">"id"</span>: <span class="hljs-number">758349028829429761</span>,
+    <span class="hljs-string">"name"</span>: <span class="hljs-string">"parakh"</span>,
+    <span class="hljs-string">"email"</span>: <span class="hljs-string">"nikhil123@gmail.com"</span>,
+    <span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"799733221124"</span>,
+    <span class="hljs-string">"password"</span>: <span class="hljs-string">"nikhil77"</span>,
+    <span class="hljs-string">"address"</span>: <span class="hljs-string">"bangalore"</span>,
+    <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-02T14:02:37.000000Z"</span>,
+    <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-02T14:02:37.000000Z"</span>
+}</code></pre><div style="height: 1px;"></div></div></div><div class="title"><strong>Response&nbsp;&nbsp;<code>401</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">"application/json",</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">"application/json",</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>If it is not present 
+            
+                
+
+         {
+             <span class="hljs-string">"message"</span>: <span class="hljs-string">"Unauthenticated."</span>
+        }</code></pre><div style="height: 1px;"></div></div></div></div></div><div id="admin-user-details-update" class="resource"><h3 class="resource-heading">Admin User Details Update <a href="#admin-user-details-update" class="permalink">&nbsp;&para;</a></h3><div id="admin-user-details-update-put" class="action put"><h4 class="action-heading"><div class="name">Admin Update</div><a href="#admin-user-details-update-put" class="method put">PUT</a><code class="uri">/api/admin/update/</code></h4><p>Here Admin will update using his name,e-mail,phone_number,address,dob,joining_date and password for the application</p>
+<h4>Example URI</h4><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">localhost:8000</span>/api/admin/update/</span></div><div class="title"><strong>Request</strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json,</span><br><span class="hljs-attribute">type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>[
+              {
+                <span class="hljs-string">"name"</span>:<span class="hljs-string">"chinnu"</span>,
+            <span class="hljs-string">"email"</span>:<span class="hljs-string">"chinnu122354@gmail.com"</span>,
+            <span class="hljs-string">"password"</span>:<span class="hljs-string">"123456"</span>,
+            <span class="hljs-string">"phone_number"</span>:<span class="hljs-string">"987654321012"</span>,
+            <span class="hljs-string">"address"</span>:<span class="hljs-string">"bangalore"</span>,
+            <span class="hljs-string">"dob"</span>:<span class="hljs-string">"1999-08-06"</span>,
+            <span class="hljs-string">"joined_date"</span>:<span class="hljs-string">"2021-12-11"</span>
+            }
+               ]
+
+  If <span class="hljs-built_in">JSON</span> details correct <span class="hljs-keyword">with</span> then Admin will be updated ....
+
+           {
+        <span class="hljs-string">"id"</span>: <span class="hljs-number">758667730918080513</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"chinnu"</span>,
+        <span class="hljs-string">"email"</span>: <span class="hljs-string">"chinnu122354@gmail.com"</span>,
+        <span class="hljs-string">"phone_number"</span>: <span class="hljs-string">"987654321012"</span>,
+        <span class="hljs-string">"password"</span>: <span class="hljs-string">"123456"</span>,
+        <span class="hljs-string">"address"</span>: <span class="hljs-string">"bangalore"</span>,
+        <span class="hljs-string">"dob"</span>: <span class="hljs-string">"1999-08-06"</span>,
+        <span class="hljs-string">"joined_date"</span>: <span class="hljs-string">"2021-12-11"</span>,
+        <span class="hljs-string">"remember_token"</span>: <span class="hljs-literal">null</span>,
+        <span class="hljs-string">"created_at"</span>: <span class="hljs-string">"2022-05-03T17:03:37.000000Z"</span>,
+        <span class="hljs-string">"updated_at"</span>: <span class="hljs-string">"2022-05-03T18:13:48.000000Z"</span>
+    }
+
+  HEADER:Content-Type &amp; TYPE
+{</code></pre><div style="height: 1px;"></div></div></div></div></div></section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 05 May 2022</p><script>/* eslint-env browser */
+/* eslint quotes: [2, "single"] */
+'use strict';
+
+/*
+  Determine if a string ends with another string.
+*/
+function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+
+/*
+  Get a list of direct child elements by class name.
+*/
+function childrenByClass(element, name) {
+  var filtered = [];
+
+  for (var i = 0; i < element.children.length; i++) {
+    var child = element.children[i];
+    var classNames = child.className.split(' ');
+    if (classNames.indexOf(name) !== -1) {
+      filtered.push(child);
+    }
+  }
+
+  return filtered;
+}
+
+/*
+  Get an array [width, height] of the window.
+*/
+function getWindowDimensions() {
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.body,
+      x = w.innerWidth || e.clientWidth || g.clientWidth,
+      y = w.innerHeight || e.clientHeight || g.clientHeight;
+
+  return [x, y];
+}
+
+/*
+  Collapse or show a request/response example.
+*/
+function toggleCollapseButton(event) {
+    var button = event.target.parentNode;
+    var content = button.parentNode.nextSibling;
+    var inner = content.children[0];
+
+    if (button.className.indexOf('collapse-button') === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
+
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        // Currently showing, so let's hide it
+        button.className = 'collapse-button';
+        content.style.maxHeight = '0px';
+    } else {
+        // Currently hidden, so let's show it
+        button.className = 'collapse-button show';
+        content.style.maxHeight = inner.offsetHeight + 12 + 'px';
+    }
+}
+
+function toggleTabButton(event) {
+    var i, index;
+    var button = event.target;
+
+    // Get index of the current button.
+    var buttons = childrenByClass(button.parentNode, 'tab-button');
+    for (i = 0; i < buttons.length; i++) {
+        if (buttons[i] === button) {
+            index = i;
+            button.className = 'tab-button active';
+        } else {
+            buttons[i].className = 'tab-button';
+        }
+    }
+
+    // Hide other tabs and show this one.
+    var tabs = childrenByClass(button.parentNode.parentNode, 'tab');
+    for (i = 0; i < tabs.length; i++) {
+        if (i === index) {
+            tabs[i].style.display = 'block';
+        } else {
+            tabs[i].style.display = 'none';
+        }
+    }
+}
+
+/*
+  Collapse or show a navigation menu. It will not be hidden unless it
+  is currently selected or `force` has been passed.
+*/
+function toggleCollapseNav(event, force) {
+    var heading = event.target.parentNode;
+    var content = heading.nextSibling;
+    var inner = content.children[0];
+
+    if (heading.className.indexOf('heading') === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
+
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+      // Currently showing, so let's hide it, but only if this nav item
+      // is already selected. This prevents newly selected items from
+      // collapsing in an annoying fashion.
+      if (force || window.location.hash && endsWith(event.target.href, window.location.hash)) {
+        content.style.maxHeight = '0px';
+      }
+    } else {
+      // Currently hidden, so let's show it
+      content.style.maxHeight = inner.offsetHeight + 12 + 'px';
+    }
+}
+
+/*
+  Refresh the page after a live update from the server. This only
+  works in live preview mode (using the `--server` parameter).
+*/
+function refresh(body) {
+    document.querySelector('body').className = 'preload';
+    document.body.innerHTML = body;
+
+    // Re-initialize the page
+    init();
+    autoCollapse();
+
+    document.querySelector('body').className = '';
+}
+
+/*
+  Determine which navigation items should be auto-collapsed to show as many
+  as possible on the screen, based on the current window height. This also
+  collapses them.
+*/
+function autoCollapse() {
+  var windowHeight = getWindowDimensions()[1];
+  var itemsHeight = 64; /* Account for some padding */
+  var itemsArray = Array.prototype.slice.call(
+    document.querySelectorAll('nav .resource-group .heading'));
+
+  // Get the total height of the navigation items
+  itemsArray.forEach(function (item) {
+    itemsHeight += item.parentNode.offsetHeight;
+  });
+
+  // Should we auto-collapse any nav items? Try to find the smallest item
+  // that can be collapsed to show all items on the screen. If not possible,
+  // then collapse the largest item and do it again. First, sort the items
+  // by height from smallest to largest.
+  var sortedItems = itemsArray.sort(function (a, b) {
+    return a.parentNode.offsetHeight - b.parentNode.offsetHeight;
+  });
+
+  while (sortedItems.length && itemsHeight > windowHeight) {
+    for (var i = 0; i < sortedItems.length; i++) {
+      // Will collapsing this item help?
+      var itemHeight = sortedItems[i].nextSibling.offsetHeight;
+      if ((itemsHeight - itemHeight <= windowHeight) || i === sortedItems.length - 1) {
+        // It will, so let's collapse it, remove its content height from
+        // our total and then remove it from our list of candidates
+        // that can be collapsed.
+        itemsHeight -= itemHeight;
+        toggleCollapseNav({target: sortedItems[i].children[0]}, true);
+        sortedItems.splice(i, 1);
+        break;
+      }
+    }
+  }
+}
+
+/*
+  Initialize the interactive functionality of the page.
+*/
+function init() {
+    var i, j;
+
+    // Make collapse buttons clickable
+    var buttons = document.querySelectorAll('.collapse-button');
+    for (i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = toggleCollapseButton;
+
+        // Show by default? Then toggle now.
+        if (buttons[i].className.indexOf('show') !== -1) {
+            toggleCollapseButton({target: buttons[i].children[0]});
+        }
+    }
+
+    var responseCodes = document.querySelectorAll('.example-names');
+    for (i = 0; i < responseCodes.length; i++) {
+        var tabButtons = childrenByClass(responseCodes[i], 'tab-button');
+        for (j = 0; j < tabButtons.length; j++) {
+            tabButtons[j].onclick = toggleTabButton;
+
+            // Show by default?
+            if (j === 0) {
+                toggleTabButton({target: tabButtons[j]});
+            }
+        }
+    }
+
+    // Make nav items clickable to collapse/expand their content.
+    var navItems = document.querySelectorAll('nav .resource-group .heading');
+    for (i = 0; i < navItems.length; i++) {
+        navItems[i].onclick = toggleCollapseNav;
+
+        // Show all by default
+        toggleCollapseNav({target: navItems[i].children[0]});
+    }
+}
+
+// Initial call to set up buttons
+init();
+
+window.onload = function () {
+    autoCollapse();
+    // Remove the `preload` class to enable animations
+    document.querySelector('body').className = '';
+};
+</script></body></html>
