@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateParentUsersTable extends Migration
 {
     /**
+     * Here ParentUser data store in Database, like id, name, email, phone_number, password, address, pan_card, gender, is_approved.
      * Run the migrations.
      *
      * @return void

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateVendorsTable extends Migration
 {
     /**
+     * Here Vendors data store in Database like id, name, email, phone_number, password, and address.
      * Run the migrations.
      *
      * @return void

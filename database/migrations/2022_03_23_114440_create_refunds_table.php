@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateRefundsTable extends Migration
 {
     /**
+     * Here Refunds data store in Database like id, transaction_id, refund_amount, refund_status, and refund_date.
      * Run the migrations.
      *
      * @return void

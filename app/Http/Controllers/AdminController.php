@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * It shows all the admins in Database
      *
      * @return \Illuminate\Http\Response
      */
@@ -39,8 +39,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * to Add the New Admin details
      * @param \App\Http\Requests\StoreadminRequest $request
      * @return \Illuminate\Http\Response
      */
@@ -70,8 +69,7 @@ class AdminController extends Controller
         return response()->json($newAdmin);
     }
     /**
-     * Display the specified resource.
-     *
+     * to Show Admin Details (all admins)
      * @param \App\Models\admin $admin
      * @return \Illuminate\Http\JsonResponse
      */
@@ -82,28 +80,32 @@ class AdminController extends Controller
      //   $admin =admin::findOrFail($admin);
         return response()->json($admin);
     }
+    /**
+     * to Show Admin Details (individual Admin)
+     * @param \App\Models\admin $admin
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function showadminid(Request $request,$admin)
     {
         $admin = admin::where('id', '=', $admin)->firstOrFail();
         return response()->json($admin);
 }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\admin $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(admin $admin)
-    {
-        //
-    }
+//    /**
+//     * Show the form for editing the specified resource.
+//     *
+//     * @param \App\Models\admin $admin
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function edit(admin $admin)
+//    {
+//        //
+//    }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * To update the Admin Details.
      * @param \App\Http\Requests\UpdateadminRequest $request
      * @param \App\Models\admin $admin
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function updateData(Request $request,$id)
     {
@@ -129,56 +131,81 @@ class AdminController extends Controller
 
 
     }
+//
+//    /**
+//     * Remove the specified resource from storage.
+//     *
+//     * @param \App\Models\admin $admin
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function destroy(admin $admin)
+//    {
+//
+//    }
 
+//    public function showparent($parentUser)
+//    {
+//        $user = ParentUser::findOrFail($parentUser);
+//        return response()->json($user);
+//    }
+//
+//    public function showchild($childU)
+//    {
+//        $user = ChildUser::findOrFail($childU);
+//        return response()->json($user);
+//    }
+//
+//    public function showtransaction($transaction)
+//    {
+//        $user = Transaction::findOrFail($transaction);
+//       // $user = Card::where('id', '=', $transaction)->firstOrFail();
+//
+//        return response()->json($user);
+//
+//    }
+//    /**
+//     * to show all card details
+//     * @param $card
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function showcard($card)
+//    {
+//        //$user = Card::findOrFail($card);
+//        $user = Card::where('card_number', '=', $card)->first();
+//        $cid=$user->child_id;
+//        $t = ChildUser::all()->where('id','=',$cid)->first();
+//        $n = $t->first_name;
+//        return response()->json(["Child_Name"=>$n,"Card-Details"=>$user]);
+//    }
+//    public function showrefund( $refund_id)
+//    {
+//        $refunds =refunds::findOrFail($refund_id);
+//        return response()->json($refunds);
+//    }
+//    public function showvendor($vendor)
+//    {
+//        $vendors = Vendor::findOrFail($vendor);
+//        return response()->json($vendors);
+//    }
     /**
-     * Remove the specified resource from storage.
+     * Admin can check the ParentUser requests.
      *
-     * @param \App\Models\admin $admin
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\admin $users
+     * @return \Illuminate\Support\Collection
      */
-    public function destroy(admin $admin)
-    {
+    public function requestStatus(){
+        $users = DB::table('parent_users')
+            ->where('is_approved' , '=' , 'not_approved')
+            ->get();
 
+        return $users;
     }
-    public function showparent($parentUser)
-    {
-        $user = ParentUser::findOrFail($parentUser);
-        return response()->json($user);
-    }
-
-    public function showchild($childU)
-    {
-        $user = ChildUser::findOrFail($childU);
-        return response()->json($user);
-    }
-
-    public function showtransaction($transaction)
-    {
-        $user = Transaction::findOrFail($transaction);
-       // $user = Card::where('id', '=', $transaction)->firstOrFail();
-
-        return response()->json($user);
-
-    }
-    public function showcard($card)
-    {
-        //$user = Card::findOrFail($card);
-        $user = Card::where('card_number', '=', $card)->first();
-        $cid=$user->child_id;
-        $t = ChildUser::all()->where('id','=',$cid)->first();
-        $n = $t->first_name;
-        return response()->json(["Child_Name"=>$n,"Card-Details"=>$user]);
-    }
-    public function showrefund( $refund_id)
-    {
-        $refunds =refunds::findOrFail($refund_id);
-        return response()->json($refunds);
-    }
-    public function showvendor($vendor)
-    {
-        $vendors = Vendor::findOrFail($vendor);
-        return response()->json($vendors);
-    }
+    /**
+     * Admin can check ParentUser Details, the details is valid then admin will Approve the ParentUser Request.
+     *
+     * @param \App\Models\admin $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function approve(\Illuminate\Http\Request $request){
         $r = ParentUser::all()->where('id','=',$request->get('user_id'))->first();
 //       return $r;
@@ -196,38 +223,52 @@ class AdminController extends Controller
         }
 
     }
-
-    public function reject(\Illuminate\Http\Request $request){
-        $r = ParentUser::all()->where('id','=',$request->get('user_id'))->first();
+    /**
+     * Admin can check ParentUser Details, the details is invalid then admin will Reject the ParentUser request.
+     *
+     * @param \App\Models\admin $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function reject(\Illuminate\Http\Request $request)
+    {
+        $r = ParentUser::all()->where('id', '=', $request->get('user_id'))->first();
 //        return $r;
-        $rs =$r->is_approved;
+        $rs = $r->is_approved;
 //        return $rs;
 //        die();
-        if($rs == "approved"){
+        if ($rs == "approved") {
             DB::table('parent_users')->
-            where('id','=',$request->get('user_id'))
-                ->update(['is_approved'=>"not_approved"]);
+            where('id', '=', $request->get('user_id'))
+                ->update(['is_approved' => "not_approved"]);
 
             return response()->json("User Temp not approved");
-        }else{
+        } else {
             return response()->json("Request pending  ");
         }
-
     }
-    public function requestStatus(){
-        $users = DB::table('parent_users')
+    /**
+     * Admin can check the ChildUser requests.
+     *
+     * @param \App\Models\admin $users
+     * @return \Illuminate\Support\Collection
+     */
+    public function childrequestStatus(\Illuminate\Http\Request $request){
+        $users = DB::table('child_users')
             ->where('is_approved' , '=' , 'not_approved')
             ->get();
 
         return $users;
     }
 
+    /**
+     * Admin can check ChildUser Details, the details is valid then admin will Approve the ChildUser Request.
+     *
+     * @param \App\Models\admin $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function childapprove(\Illuminate\Http\Request $request){
         $r = ChildUser::all()->where('id','=',$request->get('child_id'))->first();
-//       return $r;
         $rs =$r->is_approved;
-//        return $rs;
-//        die();
         if($rs == "not_approved"){
             DB::table('child_users')->
             where('id','=',$request->get('child_id'))
@@ -239,13 +280,15 @@ class AdminController extends Controller
         }
 
     }
-
+    /**
+     * Admin can check ChildUser Details, the details is invalid then admin will Reject the ChildUser Request .
+     *
+     * @param \App\Models\admin $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function childreject(Request $request){
         $r = ChildUser::all()->where('id','=',$request->get('child_id'))->first();
-//        return $r;
         $rs =$r->is_approved;
-//        return $rs;
-//        die();
         if($rs == "approved"){
             DB::table('child_users')->
             where('id','=',$request->get('child_id'))
@@ -257,11 +300,5 @@ class AdminController extends Controller
         }
 
     }
-    public function childrequestStatus(\Illuminate\Http\Request $request){
-        $users = DB::table('child_users')
-            ->where('is_approved' , '=' , 'not_approved')
-            ->get();
 
-        return $users;
-    }
 }

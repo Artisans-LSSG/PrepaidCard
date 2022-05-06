@@ -10,7 +10,7 @@ use http\Client\Request;
 class VendorController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of All Vendors Details.
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -20,18 +20,18 @@ class VendorController extends Controller
         return response()->json($vendors);
 }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+//    /**
+//     * Show the form for creating a new resource.
+//     *
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function create()
+//    {
+//        //
+//    }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly create Vendor in storage.
      *
      * @param  \App\Http\Requests\StorevendorRequest  $request
      * @return \Illuminate\Http\JsonResponse
@@ -60,7 +60,7 @@ class VendorController extends Controller
         return response()->json($newvendor);
     }
     /**
-     * Display the specified resource.
+     * Display the specified Vendor Details.
      *
      * @param  \App\Models\vendor  $vendor
      * @return \Illuminate\Http\JsonResponse
@@ -72,7 +72,7 @@ class VendorController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified Vendor Details.
      *
      * @param  \App\Models\vendor  $vendor
      * @return \Illuminate\Http\JsonResponse
@@ -83,7 +83,7 @@ class VendorController extends Controller
         return response()->json($vendors);
     }
     /**
-     * Update the specified resource in storage.
+     * Update the specified Vendor Details in storage.
      *
      * @param  \App\Http\Requests\UpdatevendorRequest  $request
      * @param  \App\Models\vendor  $vendor
@@ -113,7 +113,7 @@ class VendorController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Vendor from storage.
      *
      * @param  \App\Models\vendor  $vendor
      * @return \Illuminate\Http\JsonResponse

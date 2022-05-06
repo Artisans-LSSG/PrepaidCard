@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 class RefundSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Here we are using faker for generate the fake data about Refund, we are given the below data like  id, refund_amount, refund_status, refund_date and transaction_id is a foreign_key.
+     * After we Run the database RefundSeeder.
      *
      * @return void
      */
@@ -36,9 +37,8 @@ class RefundSeeder extends Seeder
 //        $transaction = Transaction::all()->random();
 //        $refund  = new refunds();
 //        $refund -> refund_amount = $faker->numberBetween(100,5000);
-//        $transaction->transaction_amount = $faker->numberBetween(1000,5000);
-//        $refund->refund_amount=$transaction->transaction_amount;
-//        $refund->refund_date = $transaction->transaction_date;
+//        $refund->refund_date = $refund->tr_date;
+//        $refund-> refund_status = $tr
 //        $transaction->transaction_id = $transaction->id;
             ]);
         }

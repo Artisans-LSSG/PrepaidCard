@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateTransactionsTable extends Migration
 {
     /**
+     * Here Transactions data store in Database, like id, card_number, vendor_name, transaction_amount, limit_balance, transaction_date,  transaction_status, and transaction_type.
      * Run the migrations.
      *
      * @return void

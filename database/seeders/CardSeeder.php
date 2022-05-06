@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\DB;
 class CardSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Here we are using faker for generate the fake data about Card, we are given the below data like  card_number, exp_date, cvv, child_id is a foreign_key.
+     * After we Run the database CardSeeder.
      *
      * @return void
      */

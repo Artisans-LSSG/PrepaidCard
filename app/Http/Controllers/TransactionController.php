@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\DB;
 class TransactionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of All Transactions from All ChildUsers.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -24,18 +24,18 @@ class TransactionController extends Controller
        return response()->json($comments);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+//    /**
+//     * Show the form for creating a new resource.
+//     *
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function create()
+//    {
+//        //
+//    }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new Transaction for ChildUser  .
      *
      * @param  \App\Http\Requests\StoreTransactionRequest  $request
      * @return \Illuminate\Http\JsonResponse
@@ -112,10 +112,10 @@ class TransactionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the Transactions.
      *
      * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Transaction $transaction)
     {
@@ -123,6 +123,12 @@ class TransactionController extends Controller
        return response()->json($user);
 
     }
+    /**
+     * Display the Transactions And then check the Details about Card.
+     *
+     * @param  \App\Models\Transaction  $card
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function showcard(Request $request,$card)
     {
         //print_r($card);exit;
@@ -133,23 +139,23 @@ class TransactionController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Transaction $transaction)
-    {
-        //
-    }
+//    /**
+//     * Show the form for editing the specified resource.
+//     *
+//     * @param  \App\Models\Transaction  $transaction
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function edit(Transaction $transaction)
+//    {
+//        //
+//    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateTransactionRequest  $request
      * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -178,10 +184,10 @@ class TransactionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Transactions from storage.
      *
      * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Transaction $transaction)
     {

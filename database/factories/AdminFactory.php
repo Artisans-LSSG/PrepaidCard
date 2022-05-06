@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class AdminFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * generate the random data we are using faker, using his name,e-mail,phone_number,address,dob,joining_date and password .
      *
      * @return array
      */

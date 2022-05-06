@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateCardsTable extends Migration
 {
     /**
+     * Here Cards data store in Database, like id, child_id, card_number, exp_date, cvv.
      * Run the migrations.
      *
      * @return void

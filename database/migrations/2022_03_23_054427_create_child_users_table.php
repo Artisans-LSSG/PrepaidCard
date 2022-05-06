@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateChildUsersTable extends Migration
 {
     /**
+     * Here ChildUser data store in Database, like id, first_name, last_name, email, phone_number, password,  dob, gender, monthly_limit, is_approved.
      * Run the migrations.
      *
      * @return void

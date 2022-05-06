@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Hash;
 class UserSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Here we are using faker for generate the fake data about User, we are given the below data like  id, name, email, and password.
+     * After we Run the database UserSeeder.
      *
      * @return void
      */

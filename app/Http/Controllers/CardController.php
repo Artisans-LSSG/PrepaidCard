@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\DB;
 class CardController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of All Cards Detaills.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -23,18 +23,18 @@ class CardController extends Controller
         return response()->json($comments);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+//    /**
+//     * Show the form for creating a new resource.
+//     *
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function create()
+//    {
+//        //
+//    }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly Generate a card for ChildUser.
      *
      * @param  \App\Http\Requests\StoreCardRequest  $request
      * @return \Illuminate\Http\JsonResponse
@@ -66,9 +66,9 @@ class CardController extends Controller
         return response()->json($newCard);
     }
     /**
-     * Display the specified resource.
+     * Display the All card Details.
      *
-     * @param  \App\Models\Card  $card
+     * @param  \App\Models\Card  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
@@ -81,55 +81,62 @@ class CardController extends Controller
         return response()->json(["Child_Name"=>$n,"Card_Details"=>$user]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Card  $card
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Card $card)
-    {
-       //
-    }
+//    /**
+//     * Show the form for editing the specified resource.
+//     *
+//     * @param  \App\Models\Card  $card
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function edit(Card $card)
+//    {
+//       //
+//    }
 
+//    /**
+//     * Update the specified Card Details in storage.
+//     *
+//     * @param  \App\Http\Requests\UpdateCardRequest  $request
+//     * @param  \App\Models\Card  $card
+//     * @return \Illuminate\Http\JsonResponse
+//     */
+//    public function update(UpdateCardRequest $request, Card $card)
+//    {
+//        $user = Card::findOrFail($card);
+//
+//        $request->validate([
+//            'card_number' => 'required|integer|digits_between:16,16',
+//            'exp_date' => 'date',
+//            'cvv' => 'required|integer'
+//        ]);
+//        $user->card_number = $request->get('card_number');
+//        $user->exp_date = $request->get('exp_date');
+//        $user->cvv = $request->get('cvv');
+//        $user->save();
+//
+//        return response()->json($user);
+//
+//    }
+
+//    /**
+//     * Remove the specified resource from storage.
+//     *
+//     * @param  \App\Models\Card  $card
+//     * @return \Illuminate\Http\JsonResponse
+//     */
+//    public function destroy(Card $card)
+//    {
+//        $user = Card::findOrFail($card);
+//        $user->delete();
+//
+//        return response()->json($user::all());
+//    }
     /**
-     * Update the specified resource in storage.
+     * Display the card Details and Display the Child_Id , Child_Name .
      *
-     * @param  \App\Http\Requests\UpdateCardRequest  $request
-     * @param  \App\Models\Card  $card
+     * @param  \App\Models\Card  $cn
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateCardRequest $request, Card $card)
-    {
-        $user = Card::findOrFail($card);
 
-        $request->validate([
-            'card_number' => 'required|integer|digits_between:16,16',
-            'exp_date' => 'date',
-            'cvv' => 'required|integer'
-        ]);
-        $user->card_number = $request->get('card_number');
-        $user->exp_date = $request->get('exp_date');
-        $user->cvv = $request->get('cvv');
-        $user->save();
-
-        return response()->json($user);
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Card  $card
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function destroy(Card $card)
-    {
-        $user = Card::findOrFail($card);
-        $user->delete();
-
-        return response()->json($user::all());
-    }
     public function showchild($cn){
         $r = Card::all()->where('card_number','=',$cn)->first();
         $x = $r->child_id;

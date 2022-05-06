@@ -9,7 +9,8 @@ use Faker\Factory;
 class VendorSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Here we are using faker for generate the fake data about Vendor, we are given the below data like  id, name, email, phone_number, password and address.
+     * After we Run the database VendorSeeder.
      *
      * @return void
      */

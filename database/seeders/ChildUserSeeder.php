@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\DB;
 class ChildUserSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Here we are using faker for generate the fake data about ChildUser, we are given the below data like  id, first_name, last_name, email, phone_number, gender, dob, monthly_limit, is_approved And parent_id is a foreign_key.
+     * After we Run the database ChildUserSeeder.
      *
      * @return void
      */

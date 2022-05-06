@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateAdminsTable extends Migration
 {
     /**
+     * Here Admins data store in Database like id, name, email, phone_number, password,  dob,and joined_date.
      * Run the migrations.
      *
      * @return void
