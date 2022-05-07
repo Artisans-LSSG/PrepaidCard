@@ -23,7 +23,7 @@ class PasswordResetRequestController extends Controller
         return $this->successResponse();
     }
 
-    public function send($email)  
+    public  function send($email)  
     {
         $token = $this->createToken($email);
         Mail::to($email)->send(new SendMailreset($token, $email));  
