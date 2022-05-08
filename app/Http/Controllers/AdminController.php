@@ -143,50 +143,50 @@ class AdminController extends Controller
 //
 //    }
 
-//    public function showparent($parentUser)
-//    {
-//        $user = ParentUser::findOrFail($parentUser);
-//        return response()->json($user);
-//    }
-//
-//    public function showchild($childU)
-//    {
-//        $user = ChildUser::findOrFail($childU);
-//        return response()->json($user);
-//    }
-//
-//    public function showtransaction($transaction)
-//    {
-//        $user = Transaction::findOrFail($transaction);
-//       // $user = Card::where('id', '=', $transaction)->firstOrFail();
-//
-//        return response()->json($user);
-//
-//    }
-//    /**
-//     * to show all card details
-//     * @param $card
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function showcard($card)
-//    {
-//        //$user = Card::findOrFail($card);
-//        $user = Card::where('card_number', '=', $card)->first();
-//        $cid=$user->child_id;
-//        $t = ChildUser::all()->where('id','=',$cid)->first();
-//        $n = $t->first_name;
-//        return response()->json(["Child_Name"=>$n,"Card-Details"=>$user]);
-//    }
-//    public function showrefund( $refund_id)
-//    {
-//        $refunds =refunds::findOrFail($refund_id);
-//        return response()->json($refunds);
-//    }
-//    public function showvendor($vendor)
-//    {
-//        $vendors = Vendor::findOrFail($vendor);
-//        return response()->json($vendors);
-//    }
+    public function showparent($parentUser)
+    {
+        $user = ParentUser::findOrFail($parentUser);
+        return response()->json($user);
+    }
+
+    public function showchild($childU)
+    {
+        $user = ChildUser::findOrFail($childU);
+        return response()->json($user);
+    }
+
+    public function showtransaction($transaction)
+    {
+        $user = Transaction::findOrFail($transaction);
+       // $user = Card::where('id', '=', $transaction)->firstOrFail();
+
+        return response()->json($user);
+
+    }
+    /**
+     * to show all card details
+     * @param $card
+     * @return \Illuminate\Http\Response
+     */
+    public function showcard($card)
+    {
+        //$user = Card::findOrFail($card);
+        $user = Card::where('card_number', '=', $card)->first();
+        $cid=$user->child_id;
+        $t = ChildUser::all()->where('id','=',$cid)->first();
+        $n = $t->first_name;
+        return response()->json(["Child_Name"=>$n,"Card-Details"=>$user]);
+    }
+    public function showrefund( $refund_id)
+    {
+        $refunds =refunds::findOrFail($refund_id);
+        return response()->json($refunds);
+    }
+    public function showvendor($vendor)
+    {
+        $vendors = Vendor::findOrFail($vendor);
+        return response()->json($vendors);
+    }
     /**
      * Admin can check the ParentUser requests.
      *
@@ -198,7 +198,7 @@ class AdminController extends Controller
             ->where('is_approved' , '=' , 'not_approved')
             ->get();
 
-        return $users;
+        return response()->json(['user' => $users,],200);
     }
     /**
      * Admin can check ParentUser Details, the details is valid then admin will Approve the ParentUser Request.
@@ -219,7 +219,7 @@ class AdminController extends Controller
 
             return response()->json("Request Approved");
         }else{
-            return response()->json("User is already Approved");
+            return response()->json("User is already Approved",400);
         }
 
     }
