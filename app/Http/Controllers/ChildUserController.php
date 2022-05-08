@@ -8,6 +8,7 @@ use App\Models\ChildUser;
 use App\Models\ParentUser;
 use App\Models\Transaction;
 use http\Env\Request;
+use Illuminate\Support\Facades\DB;
 
 class ChildUserController extends Controller
 {
@@ -150,6 +151,19 @@ class ChildUserController extends Controller
         $user->delete();
 
         return response()->json($user::all());
+    }
+    /**
+     * Admin can check the ChildUser requests.
+     *
+     * @param \App\Models\admin $users
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function childrequestStatus(){
+        $users = DB::table('child_users')->select('*')
+            ->where('is_approved' , '=' , 'not_approved')->get();
+
+
+        return  response()->json($users);
     }
 
 }

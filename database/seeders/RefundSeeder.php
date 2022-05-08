@@ -27,7 +27,7 @@ class RefundSeeder extends Seeder
         if ($trans_status == false) {
             DB::table('refunds')->insert([
                 'transaction_id' => $trans_id,
-                'refund_amount' => $trans_amount,
+                'refund_amount' => $trans_amount = $faker->numberBetween(100,5000),
                 'refund_date' => $faker->dateTimeBetween($transaction_date, '+1 week'),
                 'refund_status' => rand(0,1),
 

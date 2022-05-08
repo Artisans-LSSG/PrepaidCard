@@ -62,7 +62,7 @@ class ParentUserController extends Controller
             'email'=>$request->get('email'),
             'password'=>$request->get('password'),
             'gender'=>$request->get('gender'),
-            'is_approved'=>'not-approved',
+            'is_approved'=>'not_approved',
         ]);
 
         $newUser->save();
@@ -176,8 +176,8 @@ class ParentUserController extends Controller
         $card = $child->card_number;
         $cards = Card::all()->where('child_id','=',$id)->first();
         $cardNum = $cards->card_number;
-        $transaction = DB::table('transactions')->select('vendor_name', 'transaction_amount',
-            'transaction_date', 'transaction_status')->where('card_number', '=', $cardNum)->get();
+        $transaction = DB::table('transactions')->select('vendor_name', 'id','transaction_amount',
+            'transaction_date', 'transaction_status','transaction_type')->where('card_number', '=', $cardNum)->get();
 
         return response()->json($transaction);
 
