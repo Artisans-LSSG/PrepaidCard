@@ -56,49 +56,49 @@ class RefundController extends Controller
 //        $newRefund->save();
 //        return response()->json($newRefund);
 //    }
-//    public function store(\Illuminate\Http\request $request)
-//    {
-//        $faker=Factory::create();
-//        $request->validate([
-//            'transaction_id'=>'required|integer',
-//        ]);
-//        $trans_id=$request->get('transaction_id');
-//        $transaction = Transaction::all()->where('id', '=', $trans_id)->first();
-//        $cdnum = $transaction->card_number;
-//        $vdnm = $transaction->vendor_name;
-//        $refund = refunds::all()->where('transaction_id', '=', $trans_id)->first();
-//        $rid = $refund->id;
-//        $amount = $refund->refund_amount;
-//        $status = $refund->refund_status;
-//        $rt = DB::table('transactions')->select('limit_balance')
-//            ->where('card_number','=',$cdnum)
-//            ->orderBy('transaction_date','desc')->first();
-//        $rs = $rt->limit_balance;
-//        echo($rs);
-//        DB::table('transactions')->insert([
-//            'id'=>$rid,
-//            'card_number' =>$vdnm,
-//            'vendor_name' => $cdnum,
-//            'transaction_type'=>'refund',
-//            'transaction_amount' => $amount,
-//            'transaction_status' => $status,
-//            'transaction_date' => now(),
-//            'limit_balance'=> (int)$this->summ($rs, $amount)
-//
-//        ]);
-//        if($status ==1){return response()->json(["status"=>"Transaction Recorded and Amount Refund"]);}
-//        return response()->json(["status"=>"Transaction Recorded and Amount Not Refunded"]);
-//
+    public function store(\Illuminate\Http\request $request)
+    {
+        $faker=Factory::create();
+        $request->validate([
+            'transaction_id'=>'required|integer',
+        ]);
+        $trans_id=$request->get('transaction_id');
+        $transaction = Transaction::all()->where('id', '=', $trans_id)->first();
+        $cdnum = $transaction->card_number;
+        $vdnm = $transaction->vendor_name;
+        $refund = refunds::all()->where('transaction_id', '=', $trans_id)->first();
+        $rid = $refund->id;
+        $amount = $refund->refund_amount;
+        $status = $refund->refund_status;
+        $rt = DB::table('transactions')->select('limit_balance')
+            ->where('card_number','=',$cdnum)
+            ->orderBy('transaction_date','desc')->first();
+        $rs = $rt->limit_balance;
+        echo($rs);
+        DB::table('transactions')->insert([
+            'id'=>$rid,
+            'card_number' =>$vdnm,
+            'vendor_name' => $cdnum,
+            'transaction_type'=>'refund',
+            'transaction_amount' => $amount,
+            'transaction_status' => $status,
+            'transaction_date' => now(),
+            'limit_balance'=> (int)$this->summ($rs, $amount)
+
+        ]);
+        if($status ==1){return response()->json(["status"=>"Transaction Recorded and Amount Refund"]);}
+        return response()->json(["status"=>"Transaction Recorded and Amount Not Refunded"]);
 
 
 
-//    }
-//    function summ($b,$c)
-//    {
-//        return $b + $c;
+
+    }
+    function summ($b,$c)
+    {
+        return $b + $c;
 
 
-//    }
+    }
 
     /**
      * Display the specified Refund Details.

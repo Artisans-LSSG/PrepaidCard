@@ -19,8 +19,6 @@ class ParentUserSeeder extends Seeder
      */
     public function run()
     {
-      //  DB::table('parentuser')->insert({
-
         $faker = Factory::create();
         $parent = new ParentUser();
         $parent->name = $faker->firstName;

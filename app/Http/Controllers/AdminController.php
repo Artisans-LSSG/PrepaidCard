@@ -198,7 +198,7 @@ class AdminController extends Controller
             ->where('is_approved' , '=' , 'not_approved')
             ->get();
 
-        return response()->json(['user' => $users,],200);
+        return $users;
     }
     /**
      * Admin can check ParentUser Details, the details is valid then admin will Approve the ParentUser Request.
@@ -219,7 +219,7 @@ class AdminController extends Controller
 
             return response()->json("Request Approved");
         }else{
-            return response()->json("User is already Approved",400);
+            return response()->json("User is already Approved");
         }
 
     }
