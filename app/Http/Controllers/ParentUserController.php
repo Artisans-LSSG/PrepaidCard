@@ -171,7 +171,7 @@ class ParentUserController extends Controller
     public  function showtransaction($user)
     {
 
-        $child = ChildUser::all()->where('first_name','=',$user)->first();
+        $child = ChildUser::all()->where('id','=',$user)->first();
       $id = $child->id;
         $card = $child->card_number;
         $cards = Card::all()->where('child_id','=',$id)->first();
